@@ -1,4 +1,4 @@
-i{
+{
   "brand": "LEVEL",
   "brandHighlight": "UP",
 
@@ -18,7 +18,6 @@ i{
   },
 
   "plans": [
-
     {
       "name": "Starter Boost",
       "badge": "Iniciante",
@@ -42,6 +41,5 @@ i{
       "followers": "10000",
       "description": "Máximo destaque e crescimento."
     }
-
   ]
 }
