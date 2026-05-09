@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
 
 <meta charset="UTF-8">
@@ -29,6 +30,7 @@ overflow-x:hidden;
 }
 
 /* BG */
+
 .bg{
 position:fixed;
 inset:0;
@@ -43,12 +45,23 @@ animation:bg 10s ease infinite;
 }
 
 @keyframes bg{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
+
+0%{
+background-position:0% 50%;
+}
+
+50%{
+background-position:100% 50%;
+}
+
+100%{
+background-position:0% 50%;
+}
+
 }
 
 /* HEADER */
+
 header{
 text-align:center;
 padding:50px 20px 30px;
@@ -60,9 +73,13 @@ font-weight:800;
 letter-spacing:4px;
 }
 
-.logo span{
+.logo .main{
+color:white;
+}
+
+.logo .highlight{
 color:var(--main);
-text-shadow:0 0 18px var(--main);
+text-shadow:0 0 20px var(--main);
 }
 
 .hero{
@@ -78,6 +95,7 @@ font-size:14px;
 }
 
 /* STATS */
+
 .stats{
 display:flex;
 justify-content:center;
@@ -95,6 +113,7 @@ font-size:13px;
 }
 
 /* CONTAINER */
+
 .container{
 max-width:900px;
 margin:auto;
@@ -102,7 +121,8 @@ padding:20px;
 padding-bottom:120px;
 }
 
-/* PROMO */
+/* ALERT */
+
 .alert{
 padding:14px;
 border-radius:18px;
@@ -119,6 +139,7 @@ text-align:center;
 }
 
 /* CARDS */
+
 .cards{
 display:grid;
 gap:18px;
@@ -182,6 +203,7 @@ font-size:14px;
 }
 
 /* FORM */
+
 .form{
 margin-top:24px;
 
@@ -239,6 +261,7 @@ transform:scale(1.02);
 }
 
 /* MOBILE */
+
 @media(max-width:700px){
 
 .logo{
@@ -256,6 +279,7 @@ font-size:36px;
 }
 
 </style>
+
 </head>
 
 <body>
@@ -265,8 +289,8 @@ font-size:36px;
 <header>
 
 <div class="logo">
-<span id="brand1"></span>
-<span id="brand2"></span>
+<span class="main" id="brand1"></span>
+<span class="highlight" id="brand2"></span>
 </div>
 
 <div class="hero" id="hero"></div>
@@ -321,16 +345,28 @@ id="cta"
 let CONFIG = {};
 let selectedPlan = null;
 
-/* LOAD JSON */
-fetch('config.json')
+fetch('./config.json')
 
-.then(res => res.json())
+.then(response => {
+
+if(!response.ok){
+
+throw new Error('config.json não encontrado');
+
+}
+
+return response.json();
+
+})
 
 .then(data => {
+
+console.log(data);
 
 CONFIG = data;
 
 /* COLOR */
+
 document.documentElement
 .style
 .setProperty(
@@ -339,6 +375,7 @@ CONFIG.color
 );
 
 /* BRAND */
+
 document.getElementById(
 'brand1'
 ).innerHTML =
@@ -350,24 +387,28 @@ document.getElementById(
 CONFIG.brandHighlight;
 
 /* HERO */
+
 document.getElementById(
 'hero'
 ).innerHTML =
 CONFIG.hero;
 
 /* SUBTITLE */
+
 document.getElementById(
 'subtitle'
 ).innerHTML =
 CONFIG.subtitle;
 
 /* PROMO */
+
 document.getElementById(
 'promo'
 ).innerHTML =
 CONFIG.promo;
 
 /* STATS */
+
 document.getElementById(
 'sales'
 ).innerHTML =
@@ -378,12 +419,38 @@ document.getElementById(
 ).innerHTML =
 CONFIG.stats.online;
 
-/* PLANS */
+/* RENDER */
+
 renderPlans();
+
+})
+
+.catch(error => {
+
+document.body.innerHTML = `
+
+<div style="
+padding:40px;
+font-family:Poppins;
+color:white;
+">
+
+<h1>
+❌ Erro ao carregar config.json
+</h1>
+
+<p style="margin-top:10px;color:#aaa;">
+${error}
+</p>
+
+</div>
+
+`;
+
+console.log(error);
 
 });
 
-/* RENDER */
 function renderPlans(){
 
 const plans =
@@ -437,7 +504,6 @@ document.getElementById(
 
 }
 
-/* SELECT PLAN */
 function selectPlan(card,index){
 
 document
@@ -465,7 +531,6 @@ document.getElementById(
 
 }
 
-/* ORDER */
 function finishOrder(){
 
 let insta =
