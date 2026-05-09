@@ -1,0 +1,47 @@
+{
+  "brand": "LEVEL",
+  "brandHighlight": "UP",
+
+  "hero": "Ganhe seguidores hoje 🚀",
+
+  "subtitle": "Automatize pedidos e converta mais clientes",
+
+  "promo": "🔥 Promoção ativa hoje",
+
+  "whatsapp": "5511949946730",
+
+  "color": "#00ff88",
+
+  "stats": {
+    "sales": "38",
+    "online": "17"
+  },
+
+  "plans": [
+
+    {
+      "name": "Starter Boost",
+      "badge": "Iniciante",
+      "price": "R$ 9,90",
+      "followers": "1000",
+      "description": "Pacote inicial para crescimento rápido."
+    },
+
+    {
+      "name": "Creator Pack",
+      "badge": "🔥 Mais vendido",
+      "price": "R$ 29,90",
+      "followers": "5000",
+      "description": "Pacote mais forte para autoridade."
+    },
+
+    {
+      "name": "Viral Pack",
+      "badge": "Premium",
+      "price": "R$ 49,90",
+      "followers": "10000",
+      "description": "Máximo destaque e crescimento."
+    }
+
+  ]
+}
