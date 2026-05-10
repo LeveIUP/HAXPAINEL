@@ -8,12 +8,16 @@
 
 <title>LEVEL UP</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
 :root{
---main:#00ff88;
+--main:#8b5cf6;
+--bg:#070b14;
+--card:#111827;
+--text:#ffffff;
+--muted:#9ca3af;
 }
 
 *{
@@ -24,8 +28,8 @@ font-family:Poppins,sans-serif;
 }
 
 body{
-background:#0b1020;
-color:white;
+background:var(--bg);
+color:var(--text);
 overflow-x:hidden;
 }
 
@@ -37,11 +41,13 @@ inset:0;
 z-index:-1;
 
 background:
-radial-gradient(circle at top left,rgba(0,255,136,.10),transparent 30%),
-linear-gradient(-45deg,#0b1020,#11182b,#0f1726);
+radial-gradient(circle at top left,rgba(139,92,246,.18),transparent 30%),
+radial-gradient(circle at bottom right,rgba(0,191,255,.12),transparent 30%),
+linear-gradient(-45deg,#070b14,#0d1320,#111827);
 
 background-size:300% 300%;
-animation:bg 10s ease infinite;
+
+animation:bg 12s ease infinite;
 }
 
 @keyframes bg{
@@ -63,86 +69,150 @@ background-position:0% 50%;
 /* HEADER */
 
 header{
+padding:60px 20px 30px;
 text-align:center;
-padding:50px 20px 30px;
 }
 
 .logo{
 font-size:72px;
 font-weight:800;
-letter-spacing:4px;
+letter-spacing:3px;
 }
 
-.logo .main{
+.main{
 color:white;
 }
 
-.logo .highlight{
+.highlight{
 color:var(--main);
 text-shadow:0 0 20px var(--main);
 }
 
 .hero{
-margin-top:14px;
-font-size:30px;
+margin-top:16px;
+font-size:34px;
 font-weight:700;
 }
 
 .sub{
-margin-top:8px;
-color:#9ca6ba;
-font-size:14px;
+margin-top:10px;
+color:var(--muted);
+font-size:15px;
 }
 
 /* STATS */
 
 .stats{
+margin-top:26px;
+
 display:flex;
 justify-content:center;
-gap:12px;
-margin-top:22px;
+gap:14px;
 flex-wrap:wrap;
 }
 
 .stat{
-padding:12px 15px;
-border-radius:16px;
-background:rgba(255,255,255,.04);
-border:1px solid rgba(255,255,255,.06);
+padding:14px 18px;
+
+background:
+rgba(255,255,255,.04);
+
+border:
+1px solid rgba(255,255,255,.06);
+
+border-radius:18px;
+
 font-size:13px;
+
+backdrop-filter:blur(10px);
 }
 
 /* CONTAINER */
 
 .container{
-max-width:900px;
+max-width:1200px;
 margin:auto;
 padding:20px;
 padding-bottom:120px;
 }
 
-/* ALERT */
+/* PROMO */
 
 .alert{
-padding:14px;
-border-radius:18px;
-margin-bottom:20px;
+padding:16px;
+
+border-radius:20px;
+
+margin-bottom:28px;
 
 background:
-rgba(255,140,0,.08);
+rgba(139,92,246,.12);
 
 border:
-1px solid rgba(255,140,0,.18);
+1px solid rgba(139,92,246,.25);
 
-color:#ffb347;
+color:#d8b4fe;
+
 text-align:center;
+font-weight:600;
+}
+
+/* CATEGORIES */
+
+.categories{
+display:flex;
+gap:12px;
+overflow:auto;
+padding-bottom:8px;
+margin-bottom:28px;
+}
+
+.categories::-webkit-scrollbar{
+display:none;
+}
+
+.category-btn{
+min-width:max-content;
+
+padding:14px 20px;
+
+border-radius:18px;
+
+background:
+rgba(255,255,255,.04);
+
+border:
+1px solid rgba(255,255,255,.06);
+
+cursor:pointer;
+
+transition:.25s;
+
+font-size:14px;
+font-weight:600;
+
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.category-btn.active{
+background:var(--main);
+border-color:var(--main);
+
+box-shadow:
+0 0 25px rgba(139,92,246,.35);
 }
 
 /* CARDS */
 
 .cards{
 display:grid;
-gap:18px;
+
+grid-template-columns:
+repeat(auto-fit,minmax(280px,1fr));
+
+gap:22px;
 }
 
 .card{
@@ -150,96 +220,116 @@ position:relative;
 
 padding:24px;
 
-border-radius:26px;
+border-radius:28px;
 
 background:
 linear-gradient(
 180deg,
-rgba(255,255,255,.05),
+rgba(255,255,255,.06),
 rgba(255,255,255,.03)
 );
 
-border:1px solid rgba(255,255,255,.06);
+border:
+1px solid rgba(255,255,255,.08);
+
+backdrop-filter:blur(14px);
+
+overflow:hidden;
 
 transition:.25s;
 cursor:pointer;
 }
 
 .card:hover{
-transform:translateY(-4px);
+transform:translateY(-6px);
 }
 
 .card.active{
+
 border-color:var(--main);
-box-shadow:0 0 30px rgba(0,255,136,.16);
+
+box-shadow:
+0 0 30px rgba(139,92,246,.30);
+
 transform:scale(1.02);
 }
 
-.top{
-display:flex;
-justify-content:space-between;
-align-items:center;
+.badge{
+display:inline-flex;
+
+padding:7px 12px;
+
+border-radius:14px;
+
+background:
+rgba(139,92,246,.18);
+
+color:#d8b4fe;
+
+font-size:12px;
+font-weight:700;
 }
 
-.badge{
-padding:6px 10px;
-border-radius:12px;
-background:rgba(255,255,255,.06);
-font-size:11px;
+.plan-name{
+margin-top:16px;
+
+font-size:28px;
+font-weight:800;
 }
 
 .price{
 margin-top:14px;
-font-size:42px;
+
+font-size:40px;
 font-weight:800;
+
 color:var(--main);
+
+text-shadow:
+0 0 15px rgba(139,92,246,.35);
 }
 
-.desc{
-margin-top:12px;
-color:#aab4c7;
-line-height:1.7;
-font-size:14px;
+.info{
+margin-top:18px;
+
+display:flex;
+flex-direction:column;
+gap:10px;
 }
 
-/* FORM */
+.info-item{
+display:flex;
+justify-content:space-between;
 
-.form{
-margin-top:24px;
+padding:12px;
 
-padding:24px;
-
-border-radius:24px;
+border-radius:14px;
 
 background:
 rgba(255,255,255,.04);
 
-border:
-1px solid rgba(255,255,255,.06);
+font-size:13px;
 }
 
-.form-title{
-font-size:17px;
-font-weight:700;
+.desc{
+margin-top:18px;
+
+color:var(--muted);
+
+line-height:1.7;
+font-size:14px;
 }
 
-input{
+.buy-btn{
 width:100%;
-padding:15px;
+
+padding:16px;
+
+margin-top:22px;
+
 border:none;
 outline:none;
-border-radius:16px;
-background:rgba(255,255,255,.05);
-color:white;
-margin-top:14px;
-font-size:15px;
-}
 
-button{
-width:100%;
-padding:16px;
-margin-top:16px;
-border:none;
 border-radius:18px;
 
 background:
@@ -250,13 +340,100 @@ var(--main),
 );
 
 color:white;
+
 font-size:15px;
 font-weight:700;
+
 cursor:pointer;
+
 transition:.25s;
 }
 
-button:hover{
+.buy-btn:hover{
+transform:scale(1.02);
+}
+
+/* FORM */
+
+.form{
+margin-top:40px;
+
+padding:28px;
+
+border-radius:28px;
+
+background:
+rgba(255,255,255,.04);
+
+border:
+1px solid rgba(255,255,255,.06);
+
+backdrop-filter:blur(14px);
+}
+
+.form-title{
+font-size:22px;
+font-weight:700;
+}
+
+.form-sub{
+margin-top:6px;
+color:var(--muted);
+font-size:14px;
+}
+
+input{
+width:100%;
+
+padding:16px;
+
+margin-top:18px;
+
+border:none;
+outline:none;
+
+border-radius:18px;
+
+background:
+rgba(255,255,255,.05);
+
+border:
+1px solid rgba(255,255,255,.05);
+
+color:white;
+
+font-size:15px;
+}
+
+.main-btn{
+width:100%;
+
+padding:18px;
+
+margin-top:18px;
+
+border:none;
+
+border-radius:18px;
+
+background:
+linear-gradient(
+45deg,
+var(--main),
+#00bfff
+);
+
+font-size:16px;
+font-weight:700;
+
+color:white;
+
+cursor:pointer;
+
+transition:.25s;
+}
+
+.main-btn:hover{
 transform:scale(1.02);
 }
 
@@ -265,15 +442,19 @@ transform:scale(1.02);
 @media(max-width:700px){
 
 .logo{
-font-size:52px;
+font-size:54px;
 }
 
 .hero{
-font-size:23px;
+font-size:26px;
 }
 
 .price{
-font-size:36px;
+font-size:34px;
+}
+
+.cards{
+grid-template-columns:1fr;
 }
 
 }
@@ -300,11 +481,11 @@ font-size:36px;
 <div class="stats">
 
 <div class="stat">
-🔥 <span id="sales"></span> ativações hoje
+🔥 <span id="sales"></span> pedidos hoje
 </div>
 
 <div class="stat">
-🔴 <span id="online"></span> online agora
+🟢 <span id="online"></span> online agora
 </div>
 
 </div>
@@ -315,6 +496,8 @@ font-size:36px;
 
 <div class="alert" id="promo"></div>
 
+<div class="categories" id="categories"></div>
+
 <div class="cards" id="plans"></div>
 
 <div class="form">
@@ -323,17 +506,22 @@ font-size:36px;
 Finalize seu pedido
 </div>
 
+<div class="form-sub">
+Digite seu Instagram para enviar o pedido automaticamente no WhatsApp
+</div>
+
 <input
 type="text"
 id="instagram"
-placeholder="Digite seu @ do Instagram"
+placeholder="@seuinstagram"
 >
 
 <button
+class="main-btn"
 onclick="finishOrder()"
 id="cta"
 >
-🚀 Finalizar pedido
+🚀 Finalizar Pedido
 </button>
 
 </div>
@@ -343,29 +531,19 @@ id="cta"
 <script>
 
 let CONFIG = {};
+
+let selectedCategory = 0;
 let selectedPlan = null;
 
 fetch('./config.json')
 
-.then(response => {
-
-if(!response.ok){
-
-throw new Error('config.json não encontrado');
-
-}
-
-return response.json();
-
-})
+.then(response => response.json())
 
 .then(data => {
 
-console.log(data);
-
 CONFIG = data;
 
-/* COLOR */
+/* MAIN COLOR */
 
 document.documentElement
 .style
@@ -421,11 +599,15 @@ CONFIG.stats.online;
 
 /* RENDER */
 
-renderPlans();
+renderCategories();
+
+renderPlans(0);
 
 })
 
-.catch(error => {
+.catch(error=>{
+
+console.log(error);
 
 document.body.innerHTML = `
 
@@ -439,7 +621,7 @@ color:white;
 ❌ Erro ao carregar config.json
 </h1>
 
-<p style="margin-top:10px;color:#aaa;">
+<p style="margin-top:10px;color:#999;">
 ${error}
 </p>
 
@@ -447,45 +629,130 @@ ${error}
 
 `;
 
-console.log(error);
+});
+
+/* CATEGORIES */
+
+function renderCategories(){
+
+const container =
+document.getElementById(
+'categories'
+);
+
+container.innerHTML = '';
+
+CONFIG.categories.forEach((cat,index)=>{
+
+container.innerHTML += `
+
+<div
+class="category-btn ${index===0 ? 'active':''}"
+onclick="changeCategory(${index},this)"
+>
+
+<span>${cat.icon}</span>
+
+<span>${cat.name}</span>
+
+</div>
+
+`;
 
 });
 
-function renderPlans(){
+}
 
-const plans =
+/* CHANGE CATEGORY */
+
+function changeCategory(index,element){
+
+selectedCategory = index;
+
+document
+.querySelectorAll('.category-btn')
+.forEach(btn=>{
+
+btn.classList.remove(
+'active'
+);
+
+});
+
+element.classList.add(
+'active'
+);
+
+renderPlans(index);
+
+}
+
+/* RENDER PLANS */
+
+function renderPlans(categoryIndex){
+
+const plansContainer =
 document.getElementById(
 'plans'
 );
 
-plans.innerHTML = '';
+plansContainer.innerHTML = '';
 
-CONFIG.plans.forEach((plan,index)=>{
+const category =
+CONFIG.categories[categoryIndex];
 
-plans.innerHTML += `
+category.plans.forEach((plan,index)=>{
+
+plansContainer.innerHTML += `
 
 <div
 class="card ${index===0 ? 'active':''}"
 onclick="selectPlan(this,${index})"
 >
 
-<div class="top">
-
-<h3>${plan.name}</h3>
-
 <div class="badge">
 ${plan.badge}
 </div>
 
+<div class="plan-name">
+${plan.name}
 </div>
 
 <div class="price">
 ${plan.price}
 </div>
 
+<div class="info">
+
+<div class="info-item">
+<span>📦 Quantidade</span>
+<strong>${plan.followers}</strong>
+</div>
+
+<div class="info-item">
+<span>⚡ Entrega</span>
+<strong>${plan.delivery}</strong>
+</div>
+
+<div class="info-item">
+<span>💎 Qualidade</span>
+<strong>${plan.quality}</strong>
+</div>
+
+<div class="info-item">
+<span>♻️ Reposição</span>
+<strong>${plan.refill}</strong>
+</div>
+
+</div>
+
 <div class="desc">
 ${plan.description}
 </div>
+
+<button class="buy-btn">
+COMPRAR AGORA
+</button>
 
 </div>
 
@@ -494,15 +761,13 @@ ${plan.description}
 });
 
 selectedPlan =
-CONFIG.plans[0];
+category.plans[0];
 
-document.getElementById(
-'cta'
-).innerHTML =
-
-`🚀 Receber ${selectedPlan.followers} seguidores`;
+updateButton();
 
 }
+
+/* SELECT PLAN */
 
 function selectPlan(card,index){
 
@@ -521,22 +786,37 @@ card.classList.add(
 );
 
 selectedPlan =
-CONFIG.plans[index];
+CONFIG
+.categories[selectedCategory]
+.plans[index];
+
+updateButton();
+
+}
+
+/* UPDATE BUTTON */
+
+function updateButton(){
 
 document.getElementById(
 'cta'
 ).innerHTML =
 
-`🚀 Receber ${selectedPlan.followers} seguidores`;
+`🚀 Comprar ${selectedPlan.name}`;
 
 }
+
+/* FINISH ORDER */
 
 function finishOrder(){
 
 let insta =
-document.getElementById(
+document
+.getElementById(
 'instagram'
-).value.trim();
+)
+.value
+.trim();
 
 if(insta === ''){
 
@@ -554,14 +834,34 @@ insta = '@'+insta;
 
 }
 
+const category =
+CONFIG.categories[selectedCategory];
+
 const msg = `
+
 🚀 NOVO PEDIDO
 
-📦 Pacote: ${selectedPlan.name}
+📂 Categoria:
+${category.name}
 
-💰 Valor: ${selectedPlan.price}
+📦 Pacote:
+${selectedPlan.name}
 
-📸 Instagram: ${insta}
+💰 Valor:
+${selectedPlan.price}
+
+📸 Instagram:
+${insta}
+
+⚡ Entrega:
+${selectedPlan.delivery}
+
+💎 Qualidade:
+${selectedPlan.quality}
+
+♻️ Reposição:
+${selectedPlan.refill}
+
 `;
 
 window.open(
