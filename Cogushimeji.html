@@ -4,88 +4,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COGU SHIMEJI | O Fornecedor do seu Restaurante</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>COGU SHIMEJI | Distribuição Profissional</title>
+    
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1729945286592-f57645c6e563?q=80&w=1920&auto=format&fit=crop">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --brand-green: #00df81;
-            --dark-bg: #050706;
-            --card-bg: #0f1210;
+            --dark-surface: rgba(10, 12, 11, 0.94);
+            --ui-border: rgba(255, 255, 255, 0.1);
+            --text-main: #f4f4f4;
+            --text-muted: #8a8a8a;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #050605;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                              url('https://images.unsplash.com/photo-1729945286592-f57645c6e563?q=80&w=1920&auto=format&fit=crop');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            min-height: 100vh;
+        }
 
-        body { background: var(--dark-bg); color: #fff; line-height: 1.5; }
+        * { box-sizing: border-box; }
 
-        /* HEADER DIRETO AO PONTO */
+        nav {
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--ui-border);
+        }
+        .nav-logo { font-weight: 900; font-size: 20px; letter-spacing: -1px; }
+        .nav-logo span { color: var(--brand-green); }
+        nav a { color: var(--text-main); text-decoration: none; font-size: 12px; font-weight: 700; margin-left: 25px; text-transform: uppercase; }
+
         header {
-            padding: 60px 5%;
-            text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=1920&auto=format&fit=crop') center/cover;
-        }
-
-        .logo { font-weight: 900; font-size: 28px; letter-spacing: -1px; margin-bottom: 10px; }
-        .logo span { color: var(--brand-green); }
-
-        h1 { font-size: clamp(30px, 5vw, 50px); font-weight: 900; line-height: 1; }
-        .promo-badge { background: var(--brand-green); color: #000; padding: 5px 15px; font-weight: 800; border-radius: 50px; font-size: 14px; }
-
-        /* QUEM SOMOS - RÁPIDO */
-        .fast-about { padding: 40px 5%; text-align: center; border-bottom: 1px solid #1a1a1a; }
-        .fast-about p { color: #888; max-width: 700px; margin: 0 auto; font-size: 16px; }
-
-        /* ÁREA DE COMPRA */
-        .main-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            padding: 60px 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-            align-items: start;
-        }
-
-        .product-card {
-            background: #fff;
-            border-radius: 15px;
-            padding: 20px;
+            width: 100%;
+            height: 40vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            text-align: center;
         }
 
-        .product-card img { max-width: 100%; border-radius: 10px; }
-
-        .sales-copy h2 { font-size: 36px; margin-bottom: 10px; }
-        .price-hero { font-size: 60px; font-weight: 900; color: var(--brand-green); margin-bottom: 20px; }
-        .price-hero span { font-size: 20px; color: #555; font-weight: 400; }
-
-        /* VANTAGENS PARA O CHEF */
-        .chef-perks { margin: 30px 0; }
-        .perk { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; font-weight: 600; color: #ccc; }
-        .perk i { color: var(--brand-green); font-size: 20px; }
-
-        /* CALCULADORA DE ATACADO */
-        .order-box {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 12px;
-            border: 2px solid #1a1a1a;
+        header h1 {
+            font-size: clamp(35px, 7vw, 72px);
+            font-weight: 900;
+            line-height: 1;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        input[type=range] { width: 100%; accent-color: var(--brand-green); margin: 20px 0; }
+        .glass-panel {
+            background: var(--dark-surface);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--ui-border);
+            border-radius: 30px;
+        }
 
-        .total-display { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 25px; }
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 40px;
+            padding: 20px 5% 100px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: stretch;
+        }
 
-        .btn-whatsapp {
+        /* CARD DA FOTO MELHORADO - SEM BORDAS BRANCAS */
+        .image-display {
+            background: rgba(255, 255, 255, 0.05); /* Fundo sutil em vez de branco */
+            border-radius: 25px;
+            overflow: hidden;
+            border: 1px solid var(--ui-border);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+            height: 550px; /* Altura fixa para alinhar com o lado */
+            position: relative;
+        }
+
+        .image-display img {
             width: 100%;
-            padding: 25px;
+            height: 100%;
+            object-fit: cover; /* Faz a imagem preencher todo o espaço sem sobras */
+            transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+            display: block;
+        }
+
+        .image-display:hover img { transform: scale(1.1); }
+
+        /* Badge de Qualidade sobre a foto */
+        .quality-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--brand-green);
+            color: #000;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        .sales-info { display: flex; flex-direction: column; justify-content: center; }
+        .price-hero { font-size: 64px; font-weight: 900; color: var(--brand-green); margin-bottom: 20px; }
+        .price-hero span { font-size: 20px; color: var(--text-muted); font-weight: 400; }
+
+        .order-card {
+            padding: 40px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 25px;
+            border: 1px solid var(--ui-border);
+        }
+
+        input[type=range] { width: 100%; accent-color: var(--brand-green); margin: 25px 0; cursor: pointer; }
+
+        .btn-action {
+            width: 100%;
+            padding: 24px;
             background: var(--brand-green);
             color: #000;
             border: none;
-            border-radius: 8px;
+            border-radius: 15px;
             font-size: 18px;
             font-weight: 900;
             cursor: pointer;
@@ -93,81 +150,81 @@
             transition: 0.3s;
         }
 
-        .btn-whatsapp:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(0, 223, 129, 0.3); }
+        .btn-action:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0, 223, 129, 0.3); }
 
-        footer { text-align: center; padding: 40px; color: #444; font-size: 12px; }
+        footer { padding: 60px; text-align: center; color: var(--text-muted); font-size: 13px; }
 
-        @media (max-width: 850px) {
-            .main-grid { grid-template-columns: 1fr; }
-            .product-card { height: 300px; }
+        @media (max-width: 900px) {
+            .product-grid { grid-template-columns: 1fr; }
+            .image-display { height: 400px; }
         }
     </style>
 </head>
 
 <body>
 
+    <nav>
+        <div class="nav-logo">COGU <span>SHIMEJI</span></div>
+        <div>
+            <a href="#venda">Faturamento</a>
+            <a href="#">Contato</a>
+        </div>
+    </nav>
+
     <header>
-        <div class="logo">COGU <span>SHIMEJI</span></div>
-        <span class="promo-badge">DIRETO DO PRODUTOR</span>
-        <h1>O melhor custo-benefício <br>para sua cozinha.</h1>
+        <div>
+            <p style="letter-spacing: 5px; font-weight: 700; color: var(--brand-green); font-size: 12px; text-transform: uppercase; margin-bottom: 10px;">Distribuição Premium</p>
+            <h1>Cogu Shimeji Atacado</h1>
+        </div>
     </header>
 
-    <section class="fast-about" id="quem-somos">
-        <p>Somos a <strong>Cogu Shimeji</strong>. Entregamos cogumelos frescos diariamente para os melhores restaurantes, com o preço mais competitivo do mercado. Sem frescura, sem intermediários. Só o melhor Shimeji na sua porta.</p>
-    </section>
-
-    <section class="main-grid">
-        <!-- FOTO DO PRODUTO -->
-        <div class="product-card">
-            <img src="https://img.fazendinha.me/production/produtor/670/produtos/6032/minas-cogumelos-shimeji-branco-minas-cogumelos-200g-1706136083.jpg" alt="Shimeji Branco">
+    <section class="product-grid" id="venda">
+        <!-- CARD DA FOTO SEM FUNDO BRANCO -->
+        <div class="image-display">
+            <div class="quality-badge">Padrão A1 Gourmet</div>
+            <img src="https://img.fazendinha.me/production/produtor/670/produtos/6032/minas-cogumelos-shimeji-branco-minas-cogumelos-200g-1706136083.jpg" alt="Shimeji Branco Premium">
         </div>
 
-        <!-- CONTEÚDO DE VENDA -->
-        <div class="sales-copy">
-            <h2>Shimeji Branco Premium</h2>
+        <div class="sales-info">
+            <h2 style="font-size: 42px; font-weight: 900; margin-bottom: 0;">Shimeji Branco</h2>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">Colheita do dia, direto para o seu restaurante.</p>
+            
             <div class="price-hero">R$ 7,00 <span>/ kg</span></div>
 
-            <div class="chef-perks">
-                <div class="perk">● Entrega rápida e refrigerada</div>
-                <div class="perk">● Cogumelos limpos e padrão A1</div>
-                <div class="perk">● Faturamento facilitado para CNPJ</div>
-                <div class="perk">● Garantia de estoque o ano todo</div>
-            </div>
-
-            <div class="order-box">
-                <div style="display:flex; justify-content: space-between;">
-                    <span style="font-weight: 800;">Quanto você precisa?</span>
-                    <span id="qtyLabel" style="color: var(--brand-green); font-size: 22px; font-weight: 900;">50kg</span>
+            <div class="order-card glass-panel">
+                <div style="display:flex; justify-content: space-between; align-items: center;">
+                    <span style="font-weight: 600; font-size: 13px; text-transform: uppercase; color: var(--brand-green);">Volume do Pedido</span>
+                    <span id="qtyLabel" style="font-size: 32px; font-weight: 900;">50kg</span>
                 </div>
                 
                 <input type="range" min="10" max="1000" step="10" value="50" id="qtyInput" oninput="updatePrice()">
 
-                <div class="total-display">
+                <div style="display:flex; justify-content: space-between; align-items: flex-end; margin-top: 10px;">
                     <div>
-                        <p style="font-size: 12px; color: #666; text-transform: uppercase;">Total do Pedido:</p>
-                        <strong style="font-size: 36px; color: #fff;" id="totalLabel">R$ 350,00</strong>
+                        <p style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; font-weight: 800;">Subtotal Estimado:</p>
+                        <strong style="font-size: 46px;" id="totalLabel">R$ 350,00</strong>
                     </div>
-                    <div style="text-align: right; color: var(--brand-green); font-size: 13px; font-weight: 700;">
-                        FRETE GRÁTIS*
+                    <div style="text-align: right;">
+                        <p style="font-size: 12px; color: var(--brand-green); font-weight: 800; margin-bottom: 5px;">FRETE GRÁTIS*</p>
+                        <p style="font-size: 10px; color: #555;">(Consulte sua região)</p>
                     </div>
                 </div>
 
-                <button class="btn-whatsapp" onclick="sendOrder()">Falar com Consultor e Pedir</button>
+                <button class="btn-action" style="margin-top: 30px;" onclick="sendOrder()">Solicitar Orçamento</button>
             </div>
-            <p style="text-align: center; font-size: 11px; color: #444; margin-top: 15px;">*Consulte pedido mínimo para sua região.</p>
         </div>
     </section>
 
     <footer>
-        COGU SHIMEJI | Distribuição Profissional de Cogumelos | 2026
+        COGU SHIMEJI | Logística para Food Service | 2026
     </footer>
 
     <script>
-        const price = 7.00;
+        const unitPrice = 7.00;
 
         function updatePrice() {
             const qty = document.getElementById('qtyInput').value;
-            const total = qty * price;
+            const total = qty * unitPrice;
             
             document.getElementById('qtyLabel').innerText = qty + 'kg';
             document.getElementById('totalLabel').innerText = 'R$ ' + total.toLocaleString('pt-BR', {minimumFractionDigits: 2});
@@ -175,11 +232,14 @@
 
         function sendOrder() {
             const qty = document.getElementById('qtyInput').value;
-            const total = (qty * price).toLocaleString('pt-BR', {minimumFractionDigits: 2});
-            
-            const msg = `Olá Cogu Shimeji! Vi o site e quero fechar um pedido de ${qty}kg de Shimeji Branco (R$ 7,00/kg). Total: R$ ${total}. Como combinamos a entrega?`;
+            const total = (qty * unitPrice).toLocaleString('pt-BR', {minimumFractionDigits: 2});
+            const msg = `*NOVO PEDIDO - COGU SHIMEJI*%0A%0A` +
+                        `*Item:* Shimeji Branco Premium%0A` +
+                        `*Volume:* ${qty}kg%0A` +
+                        `*Total:* R$ ${total}%0A%0A` +
+                        `_Olá! Gostaria de verificar a data disponível para entrega._`;
 
-            window.open(`https://wa.me/5511949946730?text=${encodeURIComponent(msg)}`, '_blank');
+            window.open(`https://wa.me/5511949946730?text=${msg}`, '_blank');
         }
 
         updatePrice();
@@ -187,3 +247,4 @@
 
 </body>
 </html>
+
