@@ -302,17 +302,21 @@ backdrop-filter:blur(14px);
 
 overflow:hidden;
 
-transition:.25s;
+transition:
+transform .25s,
+box-shadow .25s,
+border .25s;
+
 cursor:pointer;
 }
 
 .card:hover{
 
 transform:
-translateY(-8px);
+translateY(-6px);
 
 border-color:
-rgba(139,92,246,.35);
+rgba(139,92,246,.30);
 
 }
 
@@ -321,17 +325,17 @@ rgba(139,92,246,.35);
 border-color:var(--main);
 
 transform:
-translateY(-6px)
+translateY(-8px)
 scale(1.03);
 
 box-shadow:
-0 0 40px rgba(139,92,246,.45),
-0 0 80px rgba(139,92,246,.18);
+0 0 45px rgba(139,92,246,.40),
+0 0 80px rgba(139,92,246,.15);
 
 background:
 linear-gradient(
 180deg,
-rgba(139,92,246,.18),
+rgba(139,92,246,.16),
 rgba(255,255,255,.05)
 );
 
@@ -403,6 +407,62 @@ line-height:1.7;
 font-size:14px;
 }
 
+/* BUY AREA */
+
+.buy-area{
+
+max-height:0;
+opacity:0;
+
+overflow:hidden;
+
+transition:.35s;
+
+}
+
+.card.active .buy-area{
+
+max-height:200px;
+opacity:1;
+
+margin-top:22px;
+
+}
+
+.buy-btn{
+
+width:100%;
+
+padding:16px;
+
+border:none;
+
+border-radius:18px;
+
+background:
+linear-gradient(
+45deg,
+var(--main),
+#00bfff
+);
+
+color:white;
+
+font-size:15px;
+font-weight:700;
+
+cursor:pointer;
+
+transition:.25s;
+
+}
+
+.buy-btn:hover{
+
+transform:scale(1.02);
+
+}
+
 /* MOBILE */
 
 @media(max-width:700px){
@@ -462,7 +522,7 @@ grid-template-columns:1fr;
 
 <div class="alert" id="promo"></div>
 
-<!-- INSTAGRAM PRIMEIRO -->
+<!-- INSTAGRAM -->
 
 <div class="lead-box">
 
@@ -486,7 +546,7 @@ placeholder="@seuinstagram"
 
 <div class="categories" id="categories"></div>
 
-<!-- PLANS -->
+<!-- CARDS -->
 
 <div class="cards" id="plans"></div>
 
@@ -696,6 +756,19 @@ ${plan.price}
 ${plan.description}
 </div>
 
+<div class="buy-area">
+
+<button
+class="buy-btn"
+onclick="buyPlan(event,${index})"
+>
+
+🚀 Comprar Agora
+
+</button>
+
+</div>
+
 </div>
 
 `;
@@ -707,6 +780,33 @@ ${plan.description}
 /* SELECT PLAN */
 
 function selectPlan(card,index){
+
+document
+.querySelectorAll('.card')
+.forEach(c=>{
+
+c.classList.remove(
+'active'
+);
+
+});
+
+card.classList.add(
+'active'
+);
+
+selectedPlan =
+CONFIG
+.categories[selectedCategory]
+.plans[index];
+
+}
+
+/* BUY PLAN */
+
+function buyPlan(event,index){
+
+event.stopPropagation();
 
 let insta =
 document
@@ -731,20 +831,6 @@ if(!insta.startsWith('@')){
 insta='@'+insta;
 
 }
-
-document
-.querySelectorAll('.card')
-.forEach(c=>{
-
-c.classList.remove(
-'active'
-);
-
-});
-
-card.classList.add(
-'active'
-);
 
 selectedPlan =
 CONFIG
