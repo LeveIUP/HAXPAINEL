@@ -29,7 +29,7 @@
           "name": "1K Seguidores",
           "badge": "Iniciante",
           "price": "R$ 9,90",
-          "followers": "1000",
+          "followers": "1.000",
           "delivery": "10 Min",
           "quality": "Alta qualidade",
           "refill": "30 dias",
@@ -40,11 +40,22 @@
           "name": "5K Seguidores",
           "badge": "🔥 Mais vendido",
           "price": "R$ 49,90",
-          "followers": "5000",
+          "followers": "5.000",
           "delivery": "30 Min",
           "quality": "Premium",
           "refill": "60 dias",
           "description": "Pacote premium de autoridade."
+        },
+
+        {
+          "name": "10K Seguidores",
+          "badge": "Premium",
+          "price": "R$ 99,90",
+          "followers": "10.000",
+          "delivery": "1 Hora",
+          "quality": "Ultra Premium",
+          "refill": "90 dias",
+          "description": "Maior alcance e crescimento."
         }
 
       ]
@@ -60,11 +71,22 @@
           "name": "1K Curtidas",
           "badge": "Popular",
           "price": "R$ 2,00",
-          "followers": "1000",
+          "followers": "1.000",
           "delivery": "5 Min",
           "quality": "Alta retenção",
           "refill": "7 dias",
           "description": "Mais engajamento nos posts."
+        },
+
+        {
+          "name": "5K Curtidas",
+          "badge": "🔥 Recomendado",
+          "price": "R$ 10,00",
+          "followers": "5.000",
+          "delivery": "15 Min",
+          "quality": "Premium",
+          "refill": "15 dias",
+          "description": "Ideal para viralizar publicações."
         }
 
       ]
@@ -80,11 +102,22 @@
           "name": "10K Views",
           "badge": "Viral",
           "price": "R$ 7,90",
-          "followers": "10000",
+          "followers": "10.000",
           "delivery": "Instantâneo",
-          "quality": "Reais",
+          "quality": "Views reais",
           "refill": "Não precisa",
           "description": "Aumente alcance e entrega."
+        },
+
+        {
+          "name": "50K Views",
+          "badge": "🔥 Mais vendido",
+          "price": "R$ 39,50",
+          "followers": "50.000",
+          "delivery": "30 Min",
+          "quality": "Alta velocidade",
+          "refill": "Não precisa",
+          "description": "Perfeito para viralizar reels."
         }
 
       ]
