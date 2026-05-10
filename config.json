@@ -2,19 +2,19 @@
   "brand": "LEVEL",
   "brandHighlight": "UP",
 
-  "hero": "Painel Premium SMM 🚀",
+  "hero": "Impulsione seu Instagram 🚀",
 
-  "subtitle": "Seguidores, curtidas e visualizações automáticas",
+  "subtitle": "Seguidores, curtidas e visualizações com entrega rápida e automática.",
 
-  "promo": "🔥 Promoção ativa hoje",
+  "promo": "🔥 Entrega rápida • Sem senha • Atendimento automático",
 
   "whatsapp": "5511949946730",
 
   "color": "#8b5cf6",
 
   "stats": {
-    "sales": "138",
-    "online": "47"
+    "sales": "247",
+    "online": "38"
   },
 
   "categories": [
@@ -26,36 +26,36 @@
       "plans": [
 
         {
-          "name": "1K Seguidores",
-          "badge": "Iniciante",
+          "name": "Impulso Inicial",
+          "badge": "Popular",
           "price": "R$ 9,90",
-          "followers": "1.000",
-          "delivery": "10 Min",
+          "followers": "1.000 seguidores",
+          "delivery": "Entrega rápida",
           "quality": "Alta qualidade",
-          "refill": "30 dias",
-          "description": "Ideal para crescimento inicial."
+          "refill": "Garantia inclusa",
+          "description": "Ideal para perfis que desejam começar a crescer com mais autoridade."
         },
 
         {
-          "name": "5K Seguidores",
-          "badge": "🔥 Mais vendido",
+          "name": "Crescimento Turbo",
+          "badge": "🔥 Mais escolhido",
           "price": "R$ 49,90",
-          "followers": "5.000",
-          "delivery": "30 Min",
-          "quality": "Premium",
-          "refill": "60 dias",
-          "description": "Pacote premium de autoridade."
+          "followers": "5.000 seguidores",
+          "delivery": "Entrega automática",
+          "quality": "Perfil mais relevante",
+          "refill": "Suporte prioritário",
+          "description": "Aumente sua presença online e gere mais confiança no seu perfil."
         },
 
         {
-          "name": "10K Seguidores",
+          "name": "Autoridade Máxima",
           "badge": "Premium",
           "price": "R$ 99,90",
-          "followers": "10.000",
-          "delivery": "1 Hora",
-          "quality": "Ultra Premium",
-          "refill": "90 dias",
-          "description": "Maior alcance e crescimento."
+          "followers": "10.000 seguidores",
+          "delivery": "Processamento imediato",
+          "quality": "Maior impacto social",
+          "refill": "Garantia premium",
+          "description": "Perfeito para criadores, lojas e perfis que desejam destaque."
         }
 
       ]
@@ -68,56 +68,56 @@
       "plans": [
 
         {
-          "name": "1K Curtidas",
-          "badge": "Popular",
+          "name": "Engajamento Boost",
+          "badge": "Mais usado",
           "price": "R$ 2,00",
-          "followers": "1.000",
-          "delivery": "5 Min",
-          "quality": "Alta retenção",
-          "refill": "7 dias",
-          "description": "Mais engajamento nos posts."
+          "followers": "1.000 curtidas",
+          "delivery": "Entrega rápida",
+          "quality": "Maior engajamento",
+          "refill": "Garantia inclusa",
+          "description": "Aumente a relevância das suas publicações e melhore o alcance."
         },
 
         {
-          "name": "5K Curtidas",
+          "name": "Engajamento Viral",
           "badge": "🔥 Recomendado",
           "price": "R$ 10,00",
-          "followers": "5.000",
-          "delivery": "15 Min",
-          "quality": "Premium",
-          "refill": "15 dias",
-          "description": "Ideal para viralizar publicações."
+          "followers": "5.000 curtidas",
+          "delivery": "Entrega automática",
+          "quality": "Mais alcance",
+          "refill": "Alta retenção",
+          "description": "Ideal para reels e posts que precisam ganhar força rapidamente."
         }
 
       ]
     },
 
     {
-      "name": "Views Reels",
+      "name": "Visualizações",
       "icon": "🎬",
 
       "plans": [
 
         {
-          "name": "10K Views",
+          "name": "Reels Boost",
           "badge": "Viral",
           "price": "R$ 7,90",
-          "followers": "10.000",
+          "followers": "10.000 visualizações",
           "delivery": "Instantâneo",
-          "quality": "Views reais",
-          "refill": "Não precisa",
-          "description": "Aumente alcance e entrega."
+          "quality": "Mais entrega",
+          "refill": "Sem necessidade",
+          "description": "Faça seus vídeos alcançarem mais pessoas rapidamente."
         },
 
         {
-          "name": "50K Views",
-          "badge": "🔥 Mais vendido",
+          "name": "Alcance Explosivo",
+          "badge": "🔥 Destaque",
           "price": "R$ 39,50",
-          "followers": "50.000",
-          "delivery": "30 Min",
-          "quality": "Alta velocidade",
-          "refill": "Não precisa",
-          "description": "Perfeito para viralizar reels."
+          "followers": "50.000 visualizações",
+          "delivery": "Entrega acelerada",
+          "quality": "Maior exposição",
+          "refill": "Alta performance",
+          "description": "Ideal para aumentar visualizações e melhorar a autoridade do perfil."
         }
 
       ]
