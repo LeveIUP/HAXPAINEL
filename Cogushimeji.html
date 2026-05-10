@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COGU SHIMEJI | O Fornecedor do seu Restaurante</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --brand-green: #00df81;
+            --dark-bg: #050706;
+            --card-bg: #0f1210;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+        body { background: var(--dark-bg); color: #fff; line-height: 1.5; }
+
+        /* HEADER DIRETO AO PONTO */
+        header {
+            padding: 60px 5%;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=1920&auto=format&fit=crop') center/cover;
+        }
+
+        .logo { font-weight: 900; font-size: 28px; letter-spacing: -1px; margin-bottom: 10px; }
+        .logo span { color: var(--brand-green); }
+
+        h1 { font-size: clamp(30px, 5vw, 50px); font-weight: 900; line-height: 1; }
+        .promo-badge { background: var(--brand-green); color: #000; padding: 5px 15px; font-weight: 800; border-radius: 50px; font-size: 14px; }
+
+        /* QUEM SOMOS - RÁPIDO */
+        .fast-about { padding: 40px 5%; text-align: center; border-bottom: 1px solid #1a1a1a; }
+        .fast-about p { color: #888; max-width: 700px; margin: 0 auto; font-size: 16px; }
+
+        /* ÁREA DE COMPRA */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 60px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .product-card img { max-width: 100%; border-radius: 10px; }
+
+        .sales-copy h2 { font-size: 36px; margin-bottom: 10px; }
+        .price-hero { font-size: 60px; font-weight: 900; color: var(--brand-green); margin-bottom: 20px; }
+        .price-hero span { font-size: 20px; color: #555; font-weight: 400; }
+
+        /* VANTAGENS PARA O CHEF */
+        .chef-perks { margin: 30px 0; }
+        .perk { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; font-weight: 600; color: #ccc; }
+        .perk i { color: var(--brand-green); font-size: 20px; }
+
+        /* CALCULADORA DE ATACADO */
+        .order-box {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 2px solid #1a1a1a;
+        }
+
+        input[type=range] { width: 100%; accent-color: var(--brand-green); margin: 20px 0; }
+
+        .total-display { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 25px; }
+
+        .btn-whatsapp {
+            width: 100%;
+            padding: 25px;
+            background: var(--brand-green);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 900;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .btn-whatsapp:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(0, 223, 129, 0.3); }
+
+        footer { text-align: center; padding: 40px; color: #444; font-size: 12px; }
+
+        @media (max-width: 850px) {
+            .main-grid { grid-template-columns: 1fr; }
+            .product-card { height: 300px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">COGU <span>SHIMEJI</span></div>
+        <span class="promo-badge">DIRETO DO PRODUTOR</span>
+        <h1>O melhor custo-benefício <br>para sua cozinha.</h1>
+    </header>
+
+    <section class="fast-about" id="quem-somos">
+        <p>Somos a <strong>Cogu Shimeji</strong>. Entregamos cogumelos frescos diariamente para os melhores restaurantes, com o preço mais competitivo do mercado. Sem frescura, sem intermediários. Só o melhor Shimeji na sua porta.</p>
+    </section>
+
+    <section class="main-grid">
+        <!-- FOTO DO PRODUTO -->
+        <div class="product-card">
+            <img src="https://img.fazendinha.me/production/produtor/670/produtos/6032/minas-cogumelos-shimeji-branco-minas-cogumelos-200g-1706136083.jpg" alt="Shimeji Branco">
+        </div>
+
+        <!-- CONTEÚDO DE VENDA -->
+        <div class="sales-copy">
+            <h2>Shimeji Branco Premium</h2>
+            <div class="price-hero">R$ 7,00 <span>/ kg</span></div>
+
+            <div class="chef-perks">
+                <div class="perk">● Entrega rápida e refrigerada</div>
+                <div class="perk">● Cogumelos limpos e padrão A1</div>
+                <div class="perk">● Faturamento facilitado para CNPJ</div>
+                <div class="perk">● Garantia de estoque o ano todo</div>
+            </div>
+
+            <div class="order-box">
+                <div style="display:flex; justify-content: space-between;">
+                    <span style="font-weight: 800;">Quanto você precisa?</span>
+                    <span id="qtyLabel" style="color: var(--brand-green); font-size: 22px; font-weight: 900;">50kg</span>
+                </div>
+                
+                <input type="range" min="10" max="1000" step="10" value="50" id="qtyInput" oninput="updatePrice()">
+
+                <div class="total-display">
+                    <div>
+                        <p style="font-size: 12px; color: #666; text-transform: uppercase;">Total do Pedido:</p>
+                        <strong style="font-size: 36px; color: #fff;" id="totalLabel">R$ 350,00</strong>
+                    </div>
+                    <div style="text-align: right; color: var(--brand-green); font-size: 13px; font-weight: 700;">
+                        FRETE GRÁTIS*
+                    </div>
+                </div>
+
+                <button class="btn-whatsapp" onclick="sendOrder()">Falar com Consultor e Pedir</button>
+            </div>
+            <p style="text-align: center; font-size: 11px; color: #444; margin-top: 15px;">*Consulte pedido mínimo para sua região.</p>
+        </div>
+    </section>
+
+    <footer>
+        COGU SHIMEJI | Distribuição Profissional de Cogumelos | 2026
+    </footer>
+
+    <script>
+        const price = 7.00;
+
+        function updatePrice() {
+            const qty = document.getElementById('qtyInput').value;
+            const total = qty * price;
+            
+            document.getElementById('qtyLabel').innerText = qty + 'kg';
+            document.getElementById('totalLabel').innerText = 'R$ ' + total.toLocaleString('pt-BR', {minimumFractionDigits: 2});
+        }
+
+        function sendOrder() {
+            const qty = document.getElementById('qtyInput').value;
+            const total = (qty * price).toLocaleString('pt-BR', {minimumFractionDigits: 2});
+            
+            const msg = `Olá Cogu Shimeji! Vi o site e quero fechar um pedido de ${qty}kg de Shimeji Branco (R$ 7,00/kg). Total: R$ ${total}. Como combinamos a entrega?`;
+
+            window.open(`https://wa.me/5511949946730?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        updatePrice();
+    </script>
+
+</body>
+</html>
