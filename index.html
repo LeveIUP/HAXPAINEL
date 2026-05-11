@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HYPELAB | ÁREA RESTRITA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@900&display=swap');
+        body { background-color: #0d1117; color: white; font-family: 'Space Mono', monospace; overflow: hidden; height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .scanner { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(0deg, rgba(110, 64, 201, 0.05) 0%, rgba(13, 17, 23, 0) 50%, rgba(110, 64, 201, 0.05) 100%); background-size: 100% 8px; z-index: 10; pointer-events: none; animation: scan 3s linear infinite; }
+        @keyframes scan { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }
+        .glitch { font-family: 'Inter', sans-serif; font-size: 3rem; font-weight: 900; text-transform: uppercase; color: white; text-shadow: 2px 2px #6e40c9; }
+        .warning-box { background: rgba(22, 27, 34, 0.9); border: 1px solid rgba(110, 64, 201, 0.4); border-radius: 20px; position: relative; }
+    </style>
+</head>
+<body>
+    <div class="scanner"></div>
+
+    <div class="container max-w-md mx-auto p-8 relative z-20 text-center">
+        <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJid3R1YXp6amZ6amZ6amZ6amZ6amZ6amZ6amZ6amZ6amZ6amZ6amZ6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/3o7TKuylOmX8ReL3mU/giphy.gif" 
+             style="width:110px; margin: 0 auto 20px; border-radius:50%; border:2px solid #6e40c9; padding:5px; box-shadow: 0 0 20px rgba(110,64,201,0.4);" alt="Security">
+        
+        <h1 class="glitch">HYPELAB</h1>
+        
+        <div class="warning-box p-8 mt-6 space-y-6">
+            <div id="humor-msg">
+                <p class="text-white text-sm font-bold mb-2">Parece que alguém tentou dar uma de hacker... 🕵️‍♂️</p>
+                <p class="text-gray-400 text-[10px] leading-relaxed italic">
+                    "Essa página é igual a VIP de balada: se você não tem o nome na lista, só fica olhando da grade."
+                </p>
+            </div>
+
+            <p class="text-[10px] text-purple-400 font-bold uppercase tracking-widest border-t border-white/5 pt-4">
+                LOG DE ACESSO: <br>
+                <span id="user-ip" class="text-white bg-purple-900/50 px-2 rounded">SCANNING...</span>
+            </p>
+
+            <div id="redirect-area" style="display: none;">
+                <div class="bg-green-500/10 border border-green-500/20 p-3 rounded-lg">
+                    <p class="text-[9px] text-green-500 font-black animate-pulse">
+                        SISTEMA PIEDOSO! TE MANDANDO DE VOLTA EM...
+                    </p>
+                    <span id="timer" class="text-white text-2xl font-black">5</span><span class="text-white text-xs">s</span>
+                </div>
+            </div>
+
+            <div id="stay-msg" style="display: block;">
+                <p class="text-red-500 text-[9px] font-bold">
+                    [ ACESSO BLOQUEADO: SUMA DAQUI ANTES QUE O LOG SEJA ENVIADO ]
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. Pega o IP real
+        fetch('https://api.ipify.org?format=json')
+            .then(res => res.json())
+            .then(data => document.getElementById('user-ip').innerText = data.ip)
+            .catch(() => document.getElementById('user-ip').innerText = '127.0.0.1 (ESPERTINHO)');
+
+        // 2. Lógica de Redirecionamento
+        const lastVisited = localStorage.getItem('last_visited_hypelab');
+        const timerElement = document.getElementById('timer');
+        const redirectArea = document.getElementById('redirect-area');
+        const stayMsg = document.getElementById('stay-msg');
+
+        // Se houver rastro de visita anterior, inicia a contagem
+        if (lastVisited && !window.location.pathname.includes(lastVisited)) {
+            redirectArea.style.display = 'block';
+            stayMsg.style.display = 'none'; // Esconde a mensagem de "bloqueado" e mostra a de "redirecionando"
+            
+            let timeLeft = 5;
+            const countdown = setInterval(() => {
+                timeLeft--;
+                timerElement.innerText = timeLeft;
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    window.location.href = lastVisited;
+                }
+            }, 1000);
+        }
+
+        document.addEventListener('contextmenu', e => e.preventDefault());
+    </script>
+</body>
+</html>
