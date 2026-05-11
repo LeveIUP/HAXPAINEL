@@ -1,10 +1,931 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>UNIKA PRIVATE</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#050505;
+color:#fff;
+overflow-x:hidden;
+}
+
+/* HEADER PREMIUM */
+
+.hero-header{
+position:relative;
+width:100%;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+padding:40px 5%;
+
+background:
+
+linear-gradient(
+to bottom,
+rgba(0,0,0,.45),
+rgba(0,0,0,.72)
+),
+
+url('https://i.ibb.co/3yd5WrVC/1778443504206.png')
+center top/contain no-repeat;
+
+background-color:#050505;
+}
+
+/* OVERLAY */
+
+.overlay-header{
+position:absolute;
+inset:0;
+
+background:
+radial-gradient(circle at center,
+rgba(255,0,60,.08),
+transparent 70%);
+}
+
+/* MENU */
+
+.menu{
+position:absolute;
+top:35px;
+left:50%;
+transform:translateX(-50%);
+
+display:flex;
+gap:35px;
+z-index:3;
+}
+
+.menu a{
+text-decoration:none;
+color:#fff;
+font-size:15px;
+font-weight:600;
+transition:.3s;
+position:relative;
+}
+
+.menu a::after{
+content:'';
+position:absolute;
+left:0;
+bottom:-6px;
+width:0%;
+height:2px;
+background:#ff003c;
+transition:.3s;
+}
+
+.menu a:hover{
+color:#ff003c;
+}
+
+.menu a:hover::after{
+width:100%;
+}
+
+/* CONTENT */
+
+.header-content{
+position:relative;
+z-index:2;
+max-width:760px;
+text-align:center;
+margin-top:180px;
+}
+
+.mini-tag{
+display:inline-block;
+padding:10px 18px;
+background:rgba(255,0,60,.12);
+border:1px solid rgba(255,0,60,.25);
+border-radius:50px;
+font-size:13px;
+font-weight:700;
+color:#ff4d79;
+margin-bottom:25px;
+backdrop-filter:blur(5px);
+}
+
+.header-content h1{
+font-size:76px;
+line-height:1;
+font-weight:800;
+margin-bottom:24px;
+text-shadow:0 5px 20px rgba(0,0,0,.5);
+}
+
+.header-content h1 span{
+color:#ff003c;
+}
+
+.header-content p{
+font-size:18px;
+line-height:1.9;
+color:#e0e0e0;
+margin-bottom:35px;
+text-shadow:0 3px 12px rgba(0,0,0,.5);
+}
+
+/* BOTÃO */
+
+.header-btn{
+display:inline-flex;
+padding:20px 38px;
+background:#ff003c;
+color:#fff;
+text-decoration:none;
+border-radius:18px;
+font-size:15px;
+font-weight:700;
+transition:.3s;
+box-shadow:0 0 35px rgba(255,0,60,.35);
+}
+
+.header-btn:hover{
+transform:translateY(-4px);
+}
+
+/* PRODUTOS */
+
+.products{
+padding:90px 5%;
+}
+
+.section-title{
+font-size:50px;
+font-weight:800;
+text-align:center;
+margin-bottom:12px;
+}
+
+.section-title span{
+color:#ff003c;
+}
+
+.section-sub{
+text-align:center;
+color:#999;
+margin-bottom:50px;
+font-size:15px;
+}
+
+.product-grid{
+display:flex;
+justify-content:center;
+}
+
+.card{
+width:100%;
+max-width:430px;
+
+background:#0b0b0b;
+
+border-radius:32px;
+
+overflow:hidden;
+
+border:1px solid rgba(255,255,255,.05);
+
+box-shadow:0 10px 60px rgba(0,0,0,.55);
+}
+
+.card img{
+width:100%;
+height:430px;
+
+object-fit:cover;
+
+background:#000;
+
+padding:10px;
+}
+
+.card-content{
+padding:28px;
+}
+
+.badge{
+display:inline-block;
+
+padding:8px 15px;
+
+background:rgba(255,0,60,.12);
+
+border-radius:50px;
+
+font-size:12px;
+font-weight:700;
+
+color:#ff4d79;
+
+margin-bottom:16px;
+}
+
+.card h3{
+font-size:28px;
+margin-bottom:12px;
+}
+
+.card p{
+font-size:14px;
+line-height:1.8;
+color:#aaa;
+margin-bottom:18px;
+}
+
+.stock{
+display:inline-block;
+
+padding:9px 15px;
+
+background:#131313;
+
+border-radius:14px;
+
+font-size:12px;
+
+color:#ff4d79;
+
+margin-bottom:18px;
+}
+
+.price{
+font-size:38px;
+font-weight:800;
+margin-bottom:20px;
+}
+
+.price span{
+font-size:14px;
+font-weight:400;
+color:#777;
+}
+
+/* RANGE */
+
+.range-wrap{
+margin-bottom:20px;
+}
+
+.range-wrap input{
+width:100%;
+accent-color:#ff003c;
+}
+
+/* QUANTIDADE */
+
+.qty-info{
+margin-top:18px;
+
+background:#111;
+
+padding:18px;
+
+border-radius:18px;
+}
+
+.qty-info p{
+margin-bottom:10px;
+font-size:15px;
+}
+
+.total-price{
+font-size:38px;
+font-weight:800;
+color:#ff003c;
+}
+
+/* BOTÃO COMPRAR */
+
+.buy-btn{
+width:100%;
+
+padding:18px;
+
+background:#ff003c;
+color:#fff;
+
+border:none;
+
+border-radius:18px;
+
+font-size:15px;
+font-weight:700;
+
+cursor:pointer;
+
+transition:.3s;
+}
+
+.buy-btn:hover{
+opacity:.92;
+}
+
+/* SOBRE */
+
+.about{
+padding:90px 5%;
+display:flex;
+justify-content:center;
+}
+
+.about-box{
+width:100%;
+max-width:850px;
+
+background:#0b0b0b;
+
+padding:40px;
+
+border-radius:32px;
+
+border:1px solid rgba(255,255,255,.05);
+
+box-shadow:0 10px 50px rgba(0,0,0,.45);
+text-align: center;
+}
+
+.about-tag{
+display:inline-block;
+
+padding:9px 16px;
+
+background:rgba(255,0,60,.12);
+
+border-radius:50px;
+
+font-size:12px;
+font-weight:700;
+
+color:#ff4d79;
+
+margin-bottom:18px;
+}
+
+.about h2{
+font-size:42px;
+margin-bottom:20px;
+line-height:1.1;
+}
+
+.about h2 span{
+color:#ff003c;
+}
+
+/* ESTILO DA IMAGEM QUEM SOMOS */
+.about-img{
+width: 100%;
+max-width: 600px;
+height: auto;
+border-radius: 20px;
+margin-bottom: 30px;
+filter: brightness(1.1) contrast(1.05);
+box-shadow: 0 0 30px rgba(255, 0, 60, 0.15);
+border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.about p{
+font-size:15px;
+line-height:2;
+color:#aaa;
+margin-bottom:20px;
+text-align: left;
+}
+
+/* POPUP */
+
+.popup{
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,.88);
+
+display:none;
+
+align-items:center;
+justify-content:center;
+
+padding:20px;
+
+z-index:9999;
+}
+
+.popup-box{
+width:100%;
+max-width:420px;
+
+background:#0b0b0b;
+
+border-radius:30px;
+
+padding:30px;
+
+border:1px solid rgba(255,255,255,.05);
+}
+
+.popup-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.popup-header h2{
+font-size:28px;
+}
+
+.close{
+font-size:28px;
+cursor:pointer;
+color:#ff003c;
+}
+
+.popup p{
+font-size:14px;
+line-height:1.8;
+color:#aaa;
+margin-bottom:20px;
+}
+
+.pix-box{
+background:#111;
+
+padding:18px;
+
+border-radius:18px;
+
+margin-bottom:20px;
+}
+
+.pix-box textarea{
+width:100%;
+height:110px;
+
+background:#0a0a0a;
+
+border:none;
+outline:none;
+
+color:#fff;
+
+resize:none;
+
+padding:14px;
+
+border-radius:14px;
+
+font-size:13px;
+line-height:1.7;
+}
+
+.copy-btn{
+width:100%;
+
+padding:16px;
+
+background:#fff;
+color:#000;
+
+border:none;
+
+border-radius:16px;
+
+font-size:14px;
+font-weight:700;
+
+cursor:pointer;
+
+margin-bottom:15px;
+}
+
+.whatsapp-btn{
+width:100%;
+
+padding:18px;
+
+background:#25D366;
+color:#fff;
+
+border:none;
+
+border-radius:18px;
+
+font-size:15px;
+font-weight:700;
+
+cursor:pointer;
+}
+
+/* FOOTER */
+
+footer{
+padding:35px 5%;
+
+text-align:center;
+
+font-size:13px;
+
+color:#777;
+
+border-top:1px solid rgba(255,255,255,.05);
+
+margin-top:50px;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero-header{
+height:92vh;
+padding:20px;
+
+background-size:contain;
+background-position:center top;
+}
+
+.menu{
+top:22px;
+gap:18px;
+flex-wrap:wrap;
+justify-content:center;
+width:100%;
+padding:0 20px;
+}
+
+.menu a{
+font-size:13px;
+}
+
+.header-content{
+margin-top:140px;
+}
+
+.header-content h1{
+font-size:46px;
+}
+
+.header-content p{
+font-size:15px;
+}
+
+.section-title{
+font-size:34px;
+}
+
+.card img{
+height:320px;
+}
+
+.about-box{
+padding:28px;
+}
+
+.about h2{
+font-size:32px;
+}
+
+.about-img{
+max-width: 100%;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="hero-header">
+
+<div class="overlay-header"></div>
+
+<nav class="menu">
+
+<a href="#produto">
+Produto
+</a>
+
+<a href="#sobre">
+Quem Somos
+</a>
+
+<a href="#contato">
+Contato
+</a>
+
+</nav>
+
+<div class="header-content">
+
+<div class="mini-tag">
+UNIKA PRIVATE
+</div>
+
+<h1>
+Sensualidade com
+<span>elegância.</span>
+</h1>
+
+<p>
+Moda íntima premium desenvolvida para mulheres que valorizam exclusividade e revendedoras que querem lucrar mais.
+</p>
+
+<a href="#produto" class="header-btn">
+COMPRAR AGORA
+</a>
+
+</div>
+
+</header>
+
+<section class="products" id="produto">
+
+<h2 class="section-title">
+Calcinha <span>UNIKA PRIVATE</span>
+</h2>
+
+<p class="section-sub">
+Pedido mínimo de 10 unidades • Pagamento antecipado via PIX
+</p>
+
+<div class="product-grid">
+
+<div class="card">
+
+<img
+src="https://i.ibb.co/XxjWmxS6/file-00000000489c71f586718d2adc34cdc8.png"
+alt="Calcinha UNIKA PRIVATE">
+
+<div class="card-content">
+
+<div class="badge">
+🔥 MAIS VENDIDO
+</div>
+
+<h3>
+Calcinha Renda Premium
+</h3>
+
+<p>
+Modelo feminino premium em renda confortável e elegante.
+Ideal para revenda com alta saída.
+</p>
+
+<div class="stock">
+⚠ Pedido mínimo: 10 unidades
+</div>
+
+<div class="price">
+R$5,00 <span>/ unidade</span>
+</div>
+
+<div class="range-wrap">
+
+<input
+type="range"
+min="10"
+max="300"
+value="10"
+id="qtyRange"
+oninput="updatePrice()">
+
+</div>
+
+<div class="qty-info">
+
+<p>
+Quantidade:
+<span id="qtyText" style="color:#ff003c;font-weight:700;">
+10
+</span>
+unidades
+</p>
+
+<div class="total-price">
+R$
+<span id="totalPrice">
+50.00
+</span>
+</div>
+
+</div>
+
+<br>
+
+<button class="buy-btn" onclick="openPopup()">
+COMPRAR AGORA
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="about" id="sobre">
+
+<div class="about-box">
+
+<div class="about-tag">
+❤️ QUEM SOMOS
+</div>
+
+<h2>
+A essência da <span>UNIKA PRIVATE</span>
+</h2>
+
+<!-- IMAGEM CENTRALIZADA ESTILO PREMIUM -->
+<img src="https://i.ibb.co/xKPYsbsy/1778445628355.png" alt="Unika Private Premium" class="about-img">
+
+<p>
+A UNIKA PRIVATE nasceu com o propósito de oferecer lingerie feminina premium com elegância, conforto e alta saída para revenda.
+</p>
+
+<p>
+Nosso foco é entregar peças modernas, sofisticadas e femininas para mulheres que desejam vender mais e construir uma renda através da moda íntima.
+</p>
+
+<p>
+Cada detalhe da marca foi pensado para transmitir exclusividade, sensualidade e valor.
+</p>
+
+</div>
+
+</section>
+
+<div class="popup" id="popup">
+
+<div class="popup-box">
+
+<div class="popup-header">
+
+<h2>
+Pagamento PIX
+</h2>
+
+<div class="close" onclick="closePopup()">
+✕
+</div>
+
+</div>
+
+<p>
+Faça o pagamento via PIX e envie o comprovante pelo WhatsApp para liberar seu pedido.
+</p>
+
+<div class="pix-box">
+
+<p style="font-size:13px;margin-bottom:10px;color:#777;">
+PIX Copia e Cola
+</p>
+
+<textarea readonly id="pixCode">
+
+00020126360014BR.GOV.BCB.PIX0114SEU-PIX-AQUI520400005303986540550.005802BR5925UNIKA PRIVATE6009SAOPAULO62070503***6304ABCD
+
+</textarea>
+
+</div>
+
+<button class="copy-btn" onclick="copyPix()">
+COPIAR PIX
+</button>
+
+<button class="whatsapp-btn" onclick="sendWhats()">
+ENVIAR COMPROVANTE
+</button>
+
+</div>
+
+</div>
+
+<footer id="contato">
+
+© 2026 UNIKA PRIVATE — Todos os direitos reservados.
+
+</footer>
+
 <script>
-(function(){
-    var _r = "=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ACIgACIgACIgACIgACIgACIgAiC+YXak9CPgACIgACIgACIgACIgACIgACIgAiC+cmbvJHdz9CPwADLwUzMgQiU+ICblJWYMxWY09Gdi0DZpBiI7gHc2QDI6UmepNXL052bmJSPlxWe0NHIn52byR3c8ACIgACIgACIgACIgACIgACIgACIgACIgogPw9CP68GZh1Wa0NXRgwWY09GdiV3U+IyOwADOgoDdodWaldXL052bmByOlNXYjJXZwBXdgoTby9mZz5WYyRXL0hXZ0ByOpQWZ0VXbtQHelRXLtgichZHI6I3bs92YgsDewFTMgoTZ6l2ctQnbvZmI9UGb5R3cgAHPgACIgACIgACIgACIgACIgACIgACIgACIK4jdpRGPgACIgACIgACIgACIgACIgACIgAiC+IyO4BHMxAiOw9Gdt4WanJXYtByOk5WZtgXZsZGI6MXblRXat42ZpxWYgsjblV2d0VmYtU2YhB3cgoDduVGdu92YtknZpR3c1pGI7gXZsZmO5FGbwNXakJSPlxWe0NHI2lGZ8ACIgACIgACIgACIgACIgAiCK4jIpgSZjlmcQVGdhRGc1JSP0VHculmbvBiI0VHculUe0FnI9QWagICM1ISPlVHbhZHIiATMi0DclR3cgICMwATMi0Deh1GIiATMi0jbp1GIiU2ZuFmci0TZwlHdgQXdw5Wa8ACIgACIgACIgACIgACIgAiCgACIgACIgACIgACIgACIgogP2lGZvwDIgACIgACIgACIgACIgACIK4jbhB3cvwzZrBTN+IyOwATOgoDdodWaldXL052bmByO4BnMzAiOlpXaz1Cdu9mZi0TZslHdzBiIsVmYhxUe0FnI9QWag4WYwNHPgACIgACIgACIgACIgACIgACIgAiC+4WYwN3L88GZpRWZQBybkBSZtVHbvZlPisTKuVWZydWLk5WYyJWLtgichZHI6I3bs92YgsTZzF2YyVGcwVHI60mcvZ2cuFmc01Cd4VGdgsDewNTMgoTZ6l2ctQnbvZGI7ADM2AiO0h2ZpV2dtQnbvZmI9UGb5R3cg4WYwNHPgACIgACIgACIgACIgACIgACIgAiC+IyOyVGduV2YgozctVGdp1ibnlGbhByOuVWZ3RXZi1SZjFGczBiO05WZ052bj1SemlGdzVnagsDelxmZ6kXYsB3cpRmI9UGb5R3cgYXakxDIgACIgACIgACIgACIgACIK4jIsVmbhBXLzNXYsdGIkJXYj1iclRmcvJSPzNXYsNGI2lGZ8ACIgACIgACIgACIgogC+YXak9CP+4WYwN3L8c2ag8iPuFGczxDIwADL3ACJS5jIvJXZo1SZjlmcwJSPzNXYsNGI2lGZ8ACIgACIgACIgACIgoAIgACIgACIgACIgAiC+A3L84SZ05WYyVXY0NXZyBSdlNHIvBSYyFGcg8GdlJXakBCLhlGZg8GZgEGdpVGas92Q+IyO4BHMyAiOt9Gd09mYt4WanJXYtByOpQWZ0VXbtQHelRXLtgichZHI6I3bs92Yi0TZslHdzBCc8ACIgACIgACIgACIgogPyg2L882YuFmcCBSaqVWbph2U+IyOwAiOt9Gd09mYt4WanJXYtByOwATOgoDdodWaldXL052bmByO4BnM0AiOlpXaz1Cdu9mZi0TZslHdzBiMoxDIgACIgACIgACIgAiC+Iybm5WatMXZsF2ci0zczFGbjBidpRGPgACIgACIgAiCK4jdpR2L8ACIgACIgACIK4jItVXatVmcQBybj5WYyJEIppWZtlGaTJSP0xWYgIyZwpmLzgDM2MTM2AzNx0yZwAjMtM3bsVWb1d2bj1ych5Wat1ybj5WYyJWLppWZtlGaz1ycvxWZtV3ZvNWLzFmbp12LyMDM28ycvRXdk9mcw9CM3YzLy9Gd1R2byB3Lu9Wa0NWdk9mcw9SZt5SYo5Wak5WZ6FmZucWbp9yL6MHc0RHai0zYyNHIn1Wa8ACIgACIgACIgACIgogP2lGZvwDdl1mc192RgETQg82oDLHZhBlPiU2ZkFmYtkHdpxWY1FnI9M3chx2YgYXakxDIgACIgACIgACIgAiC+ISehxGczlGZtU2Zh1Wai0zczFGbjBidpRGPgACIgACIgAiC+0SLg80QOFkUCByTE5UVGBSTFNFIPR1TGBSQEBCRSF0Qg0SLhwDIgACIgACIgogPiEGZuVmdi0DZpBiIklmcn1CdjVHZvJHci0zczFGbjBibvlGdjV2c8ACIgAiCK4jclRWYlh2L8ACIgAiC+YXak9CPgACIgACIgAiC+EDavwzbkF2YhRXQgkmal1WaoNFI1d2bD5TMoxDIgACIgACIgACIgAiC+A3L80Wdp1WZyBFIvN6wnOca1JWayR3cpRkPisDewBTMgoTbvRHdvJWLul2ZyFWbgsTZzF2YyVGcwVHI60mcvZ2cuFmc01Cd4VGdgsDewJTMgoTZ6l2ctQnbvZGI7kiblVmcn1CZuFmci1SLoIXY2BiOy9GbvNGI7ADM3AiO0h2ZpV2dtQnbvZGI7gHc1AiOn5WajFGcz1iclRHdlxmI9UGb5R3cgAHPgACIgACIgACIgACIK4jdpRGPgACIgACIgAiC+IXZkFWZoxDIgACIKogP2FmbvwDIgACIK4jdpR2L8ACIgACIgACIK4TYvwzb0FGdu92Q+IyIi0jZlJHagEGPgACIgACIgACIgACIK4TYvwzb05WZtFmc1RXYG5jIhRmblZ3Ii0jZlJHagEGPgACIgACIgACIgACIK4jdpRGPgACIgACIgAiC+YXak9CP+4WYwN3L8kkSF1USINlPuFGczxDIVd0TD5jIvd2bs1idh5mI9M3chx2YgYXakxDIgACIgACIgogP2Fmb8ACIgAiCK4Tek9mY8ogC+QWYlh2L8ogPlxWe0N3L8ACIgAiC9BCIgACIgACIK0HI7gHcwADNgoDdodWalhGI7BSehxGczlGZtU2Zh1WauACIgACIgACIgACIgoQfgsjcmFDI6MnbtVHbvNWLlRXYsBXblRXLklmcnByegQWaydWL0NWdk9mcw5CIgACIgACIgACIgAiC7BSK4BHMwkDI6gGdkl2dtgXYthCIhlGZl1GQgACIgACIgAiCK0HI7gHczEDI6UmepNXL052bmByOpQWZ0VXbtQHelRXLtgichZHI6I3bs92YgsjclRnblNGI642ZpxWYtQHelRHI7gHcwYDI6cmbpRGZhBHI7BiclR3bvZGIgACIgACIgogC9ByOpMjLwACL5ITMgwyMyIDIsADKhJ2ZyBCewBDNggHcwIDIwAiO39GZhh2ctg3biByOpgHc10CKZVGdhx2cuFmc0BiOtJ3bmNnbhJHdgsHIyVmdvhmOu9Wa0NWYt4Gdi5CIgACIgACIgogC9BCIgACIgACIKszcz4CMgojbvlGdpNnbhJHdgACIgACIgACIgACIKsTZzF2YyVGcwVHI60mcvZ2cuFmc01Cd4VGdgACIgACIgACIgACIKsjclRnbp9GcgojcvNnc1NGIgACIgACIgACIgAiC7ADM5AiO0h2ZpV2dtQnbvZGIgACIgACIgACIgAiC7gHc4EDI6UmepNXL052bmBCIgACIgACIgACIgowO4BXNxAiOzVXakFmctIXZkJ3biBCIgACIgACIgACIgowOl52buBiOyVGZy9mYgACIgACIgACIgACIKsDMwAzIgojcvx2bjBCIgACIgACIgACIgowOp4WZlJ3ZtQmbhJnYt0CKyFmdgoDZuV3byd2ajFmYgACIgACIgACIgACIKsDewRjMgozZulGZkFGcgACIgACIgACIgACIKsTJwATMgoDa0RWa3BCIgACIgACIgACIgoweg42bpR3Yh1ib0JmLgACIgACIgAiCK0HI7IXZ05WavBHI6I3bzJXdjByOwACewVjMgojbpdmch1GI7kiblVmcn1CZuFmci1SLoIXY2BiOy9GbvNWL05WZjNWYgsTJwATMgoDa0RWa3Byeg0VZn5WYy1TZwlHdbRXdw5WagACIgACIgAiCK0HIgACIgACIgowOpIXZkJ3bi1Sa11SLoIXY2BCZpx2bzBCewFDI6IXZkJ3biBCIgACIgACIgACIgowO4BXNyAiOzVXakFmctIXZkJ3biBCIgACIgACIgACIgowOpMDMuADL1UjMsUTNywSN1IDKhJ2ZyBiOk5WdvJ3ZrNWYiBCIgACIgACIgACIgowO4BHM0AiOn5WakRWYwBCIgACIgACIgACIgowegQmchNWLyVGZy9mLgACIgACIgAiCK0HI7ADM0AiO0h2ZpV2dtQnbvZGI7kCZlRXdt1Cd4VGdt0CKyFmdgojcvx2bjByO4BHMyAiOlpXaz1Cdu9mZgsHIuFGczBybyVGatU2YpJHcuACIgACIgACIK0HI7gHcwIDI602b0R3bi1ibpdmch1GI7kiblVmcn1CZuFmci1SLoIXY2BiOy9GbvNGI7ADM5AiO0h2ZpV2dtQnbvZGI7gHc0YDI6UmepNXL052bmByeg8mclhWLlNWayBnLgACIgACIgAiC9ByOyVGduV2YgoDduVGdu92YtknZpR3c1pGI74Wb1x2bjBiOu9Wa0NWZylGZtgXZsZGI7gXZsZGI6kXYsB3cpRGI7Bybm5WatMXZsF2cuACIgACIgACIKoQfgACIgACIgAiC7IDI6gXZk5WatoHIgACIgACIgACIgAiC7U2chNmclBHc1BiOtJ3bmNnbhJHdtQHelRHIgACIgACIgACIgAiC7ADM5AiO0h2ZpV2dtQnbvZGIgACIgACIgACIgAiC7gHcwEDI6UmepNXL052bmBCIgACIgACIgACIgowO4BHM1AiOzVXakFmctIXZkJ3biBCIgACIgACIgACIgowO4BXNxACewhDI6cmbpRGZhBHIgACIgACIgACIgAiC7ADMwMCI6I3bs92YgACIgACIgACIgACIKsTKuVWZydWLk5WYyJWLtgichZHI6Qmb19mcnt2YhJGIgACIgACIgACIgAiC7gHcwIDI6QnZlxGIgACIgACIgACIgAiC7gHcwIDI6A3b0BCIgACIgACIgACIgowOlRXds92ciFGI642bpRXaz9GcgACIgACIgACIgACIKsHIldGZhJWL5RXasFWdx5CIgACIgACIgowLqAyb09mZgEGIlJnYvNHIlRWYklGbhVXUgUGZgU2ZkFmQgoyLgACIgACIgAiCK0HI7kSMuEDKlxWYjNHI60mcvZ2cuFmc0ByegcWbpBiclZ3bopTehxGczlGZtU2Zh1WauACIgACIgACIKoQfgACIgACIgAiC7s2YvxmYgoTehxGczlGZgACIgACIgACIgACIKsTKxACLz4CMgwSMgwiMuADKyVWa6VmYtMWaiV3YgMHOuADItJ3bmNnbhJHdgojbvlGdpNnbhJHdgACIgACIgACIgACIK8iKgMXYyJ2bzBSblNHIvd6whB3clBybg8GZvRHIyVGaj5WZlJHcg0WZnFWbpBSYgoXYGBiKvAyOyVmdvNGI6QXam1CdjVmai9GIgACIgACIgACIgAiC7UCMwEDI6QHanlWZoBCIgACIgACIgACIgowOlADMxAiOoRHZpdHIgACIgACIgACIgAiC7ByZtlGI5FGbwNXak1SZnFWbp5CIgACIgACIgogC9BCIgACIgACIKsTZ2lGdhxWZyBiOu9Wa0l2cvBHIgACIgACIgACIgAiCvoCIvRWYsBybg02bjBichhmbpxWYgEmchBHIhhXamBSYyVHdsFEIq8CI7gHcwUTNgoDdodWalhGIgACIgACIgACIgAiC7kiNuADLwwCMsADKhJ2ZyBCewBDOggHcwQDIwAiO39GZhh2ctg3biBCIgACIgACIgACIgowOpIXZkJ3bi1Sa11SLoIXY2BCZpx2bzBCewFDI6IXZkJ3biBCIgACIgACIgACIgowOuVGZklGagozdvxmZyVmdvBCIgACIgACIgACIgowO4BXNyAiOzVXakFmctIXZkJ3biBCIgACIgACIgACIgowLqAybj5WYyJGIlRGI6Vmdg0WZgwWa0V3cg8GZuVnRgoyLgsTK1AjLwACL1UjMgwSN1IDIsUTNygSYidmcgoDZuV3byd2ajFmYgACIgACIgACIgACIKsHI5FGbwNXak1SZnFWbp5CIgACIgACIgowLqAyUBNkTBJlQgMVQEJ1TCBSTFNFItAyTEFkUPhETF1EIPR1TGBSQEBCRSF0QgoyLgACIgACIgAiCK0HIgACIgACIgowOoNGdlJHdzBiOz1WZ0lWLudWasFGIgACIgACIgACIgAiC78Gd1FGIwAiOul2ZyFWbgACIgACIgACIgACIKsDewBDMyEDI6gGdkl2dtgXYtBCIgACIgACIgACIgowO4BHMwEDIlUDI4BHMyAiOn5WakRWYwBCIgACIgACIgACIgowO4BHM0AiOwF2ZgACIgACIgACIgACIKsjcmJjLxAicmFDI6MnbtVHbvNWLlRXYsBXblRXLklmcnBCIgACIgACIgACIgowOklmcnBiO5FGbwNXakBCIgACIgACIgACIgowegQWaydWL0NWdk9mcw5CIgACIgACIgogC9BCIgACIgACIKsDewBzMgozc1lGZhJXLyVGZy9mYgACIgACIgACIgACIKsTKyVGZy9mYtkWdt0CKyFmdgQWas92cggHcxAiOyVGZy9mYgACIgACIgACIgACIKsTK4BHMxgic1xmYgojclRHbpZWLw9mckt2YhJWL0l2aiV2dtACIgACIgACIgACIgowOpgHcwEDKyVHbiBiOyVGdslmZtA3byR2ajFmYgACIgACIgACIgACIKsTKlNWYmJXdz1yayFGZt0CKyFmdgoDZuV3byd2ajFmYgACIgACIgACIgACIKsHIsVmbhBXLzNXYsdmLgACIgACIgAiCK0HIgACIgACIgowOpUjLwwCMsADLwgSYidmcggHcwMDI4BHMxACMgozdvRWYoNXL0hXZ0BCIgACIgACIgACIgowOxAiO0h2ZpVGatUmbpxGIgACIgACIgACIgAiC7ADM5AiO0h2ZpV2dtQnbvZGIgACIgACIgACIgAiC7kCewJzNgwyd2dDIsgHc1MDKw1WYsNGI6UmepNXL052bmBCIgACIgACIgACIgowegEDagIXZkFWZoBCIgACIgACIKoQfgACIgACIgAiC7IXZ05WZjBiOudWasFWL0hXZ0BCIgACIgACIgACIgowOyVGduV2YgoDduVGdu92YtknZpR3c1pGIgACIgACIgACIgAiC7IXZ05WZjBiOz1WZ0lWLudWasFGIgACIgACIgACIgAiC7gXZsZGI6kXYsB3cpRGIgACIgACIgACIgAiC7gmdwQDI6QHanlWZoBCIgACIgACIgACIgowOlADMxAiOoRHZpdHIgACIgACIgACIgAiC7BiclRWYlhGIgACIgACIgogC9ByOlNXYjJXZwBXdgoTby9mZz5WYyRXL0hXZ0ByO4BXNyAiO0ZWZs1ibpdmch1GI7ADM3AiO0h2ZpV2dtQnbvZGI7gHcyEDI6UmepNXL052bmByOl52buBiOu9Wa0FmcvNWZk1Cd4VGdgsTKulWYt1Cd4VGdt0CKyFmdgojcvx2bjByegEGI2FmbgACIgACIgAiC9ByOp4WZlJ3ZtQmbhJnYt0CKyFmdgojcvx2bjByeg4WYwNHIvd2bs1idh5mLgACIgACIgAiC9ByO4BXMtAiOn5WajFGcz1iclRHdlxGI7gHcwIDI6UmepNXL052bmByOwATOgoDdodWaldXL052bmByeg82ZvxWL2FmbuACIgACIgACIK0HIgACIgACIgowOpIXZkJ3bi1Sa11SLoIXY2BCZpx2bzBCewFDI602b0R3bi1iclRmcvJGIgACIgACIgACIgAiC7ADMwEDI6gXZk5WatoHIgACIgACIgACIgAiC7ADI6A3b0BCIgACIgACIgACIgowO5t2YpR3cgojbvlGdpN3bwBCIgACIgACIgACIgowOpgHc1EDKyVHbiBiOyVGdslmZtA3byR2ajFmYtQXarJWZ31CIgACIgACIgACIgAiC7kCewVTMoIXdsJGI6IXZ0xWam1CcvJHZrNWYiBCIgACIgACIgACIgowOpcjLwACLwACLwACLwgSYidmcgoDZuV3byd2ajFmYgACIgACIgACIgACIKsjclRnblNGI6MXblRXat42ZpxWYgACIgACIgACIgACIKsjblV2d0VmYtU2YhB3cgoDduVGdu92YtknZpR3c1pGIgACIgACIgACIgAiC7gXZsZGI6kXYsB3cpRGIgACIgACIgACIgAiC7USNggHcwIDI6cmbpRGZhBHIgACIgACIgACIgAiC7Bidh5GIgACIgACIgogC9ByO49mYtIXZkJ3biBiOn5Wa6l2ctg3biByegoCIgACIgACIgogC9BCIgACIgACIKsDa2BDMxAiO0h2ZpVGat4WatBCIgACIgACIgACIgowOoR3bv12cgojcvlmdhhWZi1Cbs9mcjNHIgACIgACIgACIgAiC7YjLxAiO0h2ZpVGatUmbpxGIgACIgACIgACIgAiC7YWayV2ctMnbhNHIsciclRnbJdCI6kHbp1WYm1Cdu9mZgACIgACIgACIgACIKsTKulWYt1Cd4VGdt0CKyFmdgojcvx2bjBCIgACIgACIgACIgowOyVGduV2YgojbvlGdpN3bw1CZuV3byd2ajFmYgACIgACIgACIgACIKsjclZ3bjBiOlpXaz1CZuV3byd2ajFmYgACIgACIgACIgACIKsDZlhXamBiO05WZth2YhRHdh1CZuV3byd2ajFmYgACIgACIgACIgACIKsTKnA3byNWP0lmZmQXYtJ3bm1zb0VXYmAjM5ETP3ZCM40Tc/MjN1UmNjVDN2cTNm1iM5UjN4ITN0kTOycTMt8GdvhGcv02bj5CazFGbwNnb15ycldWYtl2LvozcwRHdodCKsJXdgACIgACIgACIgACIgACIgACIgACIgACIgACIgACIKACLpkCOuADIsADIsADIsADKhJ2ZyBCLpgjLwACLwACLwACLwgSYidmcoQnbllGZhJ3ZtIXYl5WasBiOldWYtlWLk5WdvJ3ZrNWYiBCIgACIgACIgACIgowO1AjNwUDMjAiOy9GbvNWLk5WdvJ3ZrNWYiBCIgACIgACIgACIgowOwAiOn5WakRWYwBCIgACIgACIgACIgowOwAiOul2ZyFWbgACIgACIgACIgACIKsHI5R2biBCIgACIgACIKoQfgACIgACIgAiC7EGOhhTY4MCI6QWZ0VXbtQHelRXLtACIgACIgACIgACIgowO0YGNmRjZjAiOulWYt1Cd4VGdt0CIgACIgACIgACIgAiC7kSMuADIsUTNyACL1UjMgwSN1IDKhJ2ZyBiOyVGZy9mYtkWdt0CIgACIgACIgACIgAiC7kCN54CMgwSMxACLyEDIsATMoEmYnJHI6U2YhZmc1NXLrJXYk1SLgACIgACIgACIgACIKsTM4YGZwAzIgojblVmcn1CZuFmci1SLgACIgACIgACIgACIKsHI092bypDIgACIgACIgogPlxWe0NHPgACIgoAIgACIK4jI0VWZoNXZslHdzJSPsVmcgICchd3c9kXYsB3cpRmJwATO7ADM4sDMwczOwAjN7ADM0sDMwMDQ0h2Z3pjclRnbJ1TeslWbhZ2PyM3cj9SbvNmLzlGchVGbn92bn5yc052bm9yL6MHc0RHai0jZlJHagsmbpxGPgACIgogPiA3byNWP0lmZmQXYtJ3bm1zb0VXYmAjM5ETP3ZCM40Tc/MjN1UmNjVDN2cTNm1iM5UjN4ITN0kTOycTMt8GdvhGcv02bj5CazFGbwNnb15ycldWYtl2LvozcwRHdoJSPmVmcoBiIldWYtlmI9MXYgICZh9GblJHci0DblJHIr5WasxDIgACIKACIgAiC+UGb0lGdvwDbh52bpN3cpZ2byBFIvN6wnOca1JWayR3cpREI8BSSKVUTJh0UgU1RPNkPlxGdpRHPgACIgogPiAjLx0TZsF2Yz1CbhlGdp5WagwCa0RWa31SZjlmdlRWPoRHZpdnI9QnblRnbvNGIiQncvB3dllmdi0TZtFmbgEGdl1GPgACIgogPigTLGRVVi0DdlNnchh2YgEGdl1GPgACIgogPkFWZoxjCK4jIyJWL0BnI9cmbhxGIs1GdoxjC+wWb0hGIFBVWUN0TEFCP".split('').reverse().join(''); 
-    document.open();
-    document.write(decodeURIComponent(escape(atob(_r))));
-    document.close();
-    document.oncontextmenu = () => false;
-    document.onkeydown = e => { if(e.keyCode==123 || (e.ctrlKey && e.shiftKey && e.keyCode==73)) return false; };
-})();
+
+let quantity = 10;
+let total = 50;
+
+function updatePrice(){
+
+quantity =
+document.getElementById("qtyRange").value;
+
+total = quantity * 5;
+
+document.getElementById("qtyText")
+.innerHTML = quantity;
+
+document.getElementById("totalPrice")
+.innerHTML = total.toFixed(2);
+
+updatePix();
+
+}
+
+function updatePix(){
+
+document.getElementById("pixCode").value =
+
+`Pagamento UNIKA PRIVATE
+
+Quantidade:
+${quantity} unidades
+
+Valor:
+R$${total.toFixed(2)}
+
+PIX:
+SEU-PIX-AQUI`;
+
+}
+
+function openPopup(){
+
+document.getElementById("popup")
+.style.display = "flex";
+
+updatePix();
+
+}
+
+function closePopup(){
+
+document.getElementById("popup")
+.style.display = "none";
+
+}
+
+function copyPix(){
+
+const pix =
+document.getElementById("pixCode");
+
+pix.select();
+
+document.execCommand("copy");
+
+alert("PIX copiado.");
+
+}
+
+function sendWhats(){
+
+let message =
+
+`Olá, realizei um pedido na UNIKA PRIVATE.%0A%0A` +
+
+`Quantidade: ${quantity} unidades%0A` +
+
+`Valor Total: R$${total.toFixed(2)}%0A%0A` +
+
+`Vou enviar o comprovante do PIX.`;
+
+window.open(
+`https://wa.me/5511949946730?text=${message}`,
+'_blank'
+);
+
+}
+
+updatePrice();
+
 </script>
+
+</body>
+</html>
