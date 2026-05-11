@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HYPELAB | IDE Final</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=Inter:wght@400;700&display=swap');
+        
+        /* Reset total para impedir o Android de rolar a página */
+        * { box-sizing: border-box; }
+        body, html { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0d1117; 
+            margin: 0; padding: 0;
+            height: 100vh; width: 100vw;
+            overflow: hidden; position: fixed;
+        }
+
+        /* Estrutura Principal em Grid (3 andares) */
+        .app-container {
+            display: grid;
+            grid-template-rows: 60px 30px 1fr; /* Header, Barra de Título, Editor */
+            height: 100vh;
+            width: 100vw;
+        }
+
+        header {
+            background-color: #161b22;
+            border-bottom: 1px solid #30363d;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+            z-index: 100;
+        }
+
+        .file-info-bar {
+            background-color: #090c10;
+            border-bottom: 1px solid #1f242b;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            color: #8b949e;
+            font-size: 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        /* ÁREA DO EDITOR - NUNCA CRESCE */
+        #editor-frame {
+            position: relative;
+            overflow: hidden; /* Corta qualquer coisa que tente sair */
+            background-color: #0d1117;
+        }
+
+        textarea { 
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            width: 100%; height: 100%;
+            background: transparent; 
+            color: #e6edf3 !important; 
+            border: none; 
+            padding: 15px; 
+            font-size: 14px; 
+            line-height: 1.5; 
+            resize: none; 
+            outline: none;
+            font-family: 'Fira Code', monospace;
+            overflow: auto; /* Scroll individual */
+            white-space: pre;
+            -webkit-overflow-scrolling: touch;
+            caret-color: #58a6ff;
+        }
+
+        /* Sidebar Drawer */
+        #sidebar { 
+            position: fixed; left: 0; top: 0; bottom: 0; 
+            width: 85%; max-width: 300px; 
+            background-color: #161b22; 
+            border-right: 1px solid #30363d; 
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            z-index: 200; 
+            transform: translateX(-100%);
+        }
+        #sidebar.open { transform: translateX(0); box-shadow: 20px 0 50px rgba(0,0,0,0.8); }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 150;
+        }
+        .overlay.active { display: block; }
+
+        .loader {
+            position: absolute; inset: 0; background: rgba(13,17,23,0.9);
+            display: flex; align-items: center; justify-content: center; z-index: 50;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <header>
+            <div class="flex items-center gap-3">
+                <button onclick="toggleSidebar()" class="w-10 h-10 bg-[#21262d] text-white rounded-lg flex items-center justify-center">
+                    <i class="fas fa-bars text-lg"></i>
+                </button>
+                <button onclick="createNewRepo()" class="text-orange-500 text-[10px] font-black border border-orange-900/50 rounded px-2 py-1">REPO</button>
+            </div>
+            <div class="flex items-center gap-2">
+                <button onclick="setNewToken()" class="text-gray-500 p-2"><i class="fas fa-key"></i></button>
+                <button onclick="saveFile()" class="bg-green-600 text-white px-5 py-2 rounded-lg text-xs font-black shadow-lg">PUBLICAR</button>
+            </div>
+        </header>
+
+        <div class="file-info-bar">
+            <i class="far fa-file-code mr-2"></i>
+            <span id="file-title" class="truncate">Nenhum arquivo selecionado</span>
+        </div>
+
+        <main id="editor-frame">
+            <textarea id="editor" spellcheck="false" placeholder="// Cole seu código aqui..."></textarea>
+            <div id="loader" class="hidden loader">
+                <div class="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+            </div>
+        </main>
+    </div>
+
+    <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
+
+    <aside id="sidebar">
+        <div class="p-6 flex flex-col h-full">
+            <div class="flex justify-between items-center mb-8">
+                <span class="text-xs font-bold text-gray-500 uppercase tracking-widest">Meus Arquivos</span>
+                <button onclick="listFiles()" class="text-blue-500 p-2"><i class="fas fa-sync-alt"></i></button>
+            </div>
+            <button onclick="addNewFile()" class="w-full mb-4 bg-blue-600 text-white py-4 rounded-xl text-sm font-bold shadow-md">+ Novo Arquivo</button>
+            <div id="file-list" class="space-y-3 overflow-y-auto flex-1"></div>
+        </div>
+    </aside>
+
+    <script>
+        let GITHUB_TOKEN = localStorage.getItem('hypelab_token') || "";
+        let REPO = localStorage.getItem('hypelab_active_repo') || "HYPELABdev/LEVELUP";
+        let currentSha = "";
+        let currentPath = "";
+
+        function toggleSidebar() { 
+            document.getElementById('sidebar').classList.toggle('open'); 
+            document.getElementById('overlay').classList.toggle('active');
+        }
+
+        function setNewToken() {
+            const t = prompt("GitHub Token:", GITHUB_TOKEN);
+            if (t) { GITHUB_TOKEN = t.trim(); localStorage.setItem('hypelab_token', GITHUB_TOKEN); listFiles(); }
+        }
+
+        async function listFiles() {
+            if (!GITHUB_TOKEN) return;
+            const list = document.getElementById('file-list');
+            list.innerHTML = "<p class='text-center py-4 text-blue-500 text-xs animate-pulse'>Sincronizando...</p>";
+            try {
+                const res = await fetch(`https://api.github.com/repos/${REPO}/contents/`, {
+                    headers: { 'Authorization': `token ${GITHUB_TOKEN}` }
+                });
+                const data = await res.json();
+                list.innerHTML = "";
+                data.forEach(f => {
+                    if (f.type === "file") {
+                        const div = document.createElement('div');
+                        div.className = "flex items-center justify-between p-3 bg-[#1c2128] rounded-xl border border-[#30363d]";
+                        div.innerHTML = `
+                            <div class="flex items-center gap-3 truncate flex-1" onclick="fetchFile('${f.path}')">
+                                <i class="far fa-file-code text-blue-400 text-lg"></i>
+                                <span class="text-sm font-mono text-gray-300">${f.name}</span>
+                            </div>
+                            <button onclick="deleteFile('${f.path}', '${f.sha}')" class="text-red-500 px-2"><i class="fas fa-trash-alt"></i></button>
+                        `;
+                        list.appendChild(div);
+                    }
+                });
+            } catch (e) { list.innerHTML = "Erro de conexão"; }
+        }
+
+        async function fetchFile(path) {
+            document.getElementById('loader').classList.remove('hidden');
+            try {
+                const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}?t=${Date.now()}`, {
+                    headers: { 'Authorization': `token ${GITHUB_TOKEN}` }
+                });
+                const data = await res.json();
+                currentSha = data.sha;
+                currentPath = data.path;
+                document.getElementById('file-title').innerText = data.path;
+                document.getElementById('editor').value = decodeURIComponent(escape(atob(data.content)));
+                toggleSidebar();
+            } catch (e) { alert("Erro ao carregar"); }
+            finally { document.getElementById('loader').classList.add('hidden'); }
+        }
+
+        function addNewFile() {
+            const name = prompt("Nome do arquivo (ex: index.html):");
+            if (!name) return;
+            currentPath = name;
+            currentSha = "";
+            document.getElementById('editor').value = "";
+            document.getElementById('file-title').innerText = "CRIANDO: " + name;
+            toggleSidebar();
+        }
+
+        async function saveFile() {
+            if (!currentPath) return alert("Selecione um arquivo primeiro!");
+            document.getElementById('loader').classList.remove('hidden');
+            try {
+                const content = document.getElementById('editor').value;
+                const body = { message: "Update via Mobile IDE", content: btoa(unescape(encodeURIComponent(content))) };
+                if (currentSha) body.sha = currentSha;
+
+                const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${currentPath}`, {
+                    method: 'PUT',
+                    headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    currentSha = data.content.sha;
+                    alert("✅ Publicado no GitHub!");
+                    listFiles();
+                }
+            } catch (e) { alert("Erro ao salvar"); }
+            finally { document.getElementById('loader').classList.add('hidden'); }
+        }
+
+        async function deleteFile(path, sha) {
+            if (!confirm(`Deseja apagar permanentemente ${path}?`)) return;
+            try {
+                await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: "Delete", sha: sha })
+                });
+                listFiles();
+            } catch (e) { alert("Erro ao deletar"); }
+        }
+
+        async function createNewRepo() {
+            const name = prompt("Nome do novo Repositório:");
+            if (!name) return;
+            document.getElementById('loader').classList.remove('hidden');
+            try {
+                const res = await fetch(`https://api.github.com/user/repos`, {
+                    method: 'POST',
+                    headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: name, auto_init: true })
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    REPO = data.full_name;
+                    localStorage.setItem('hypelab_active_repo', REPO);
+                    alert("✅ Repositório criado e ativo!");
+                    listFiles();
+                }
+            } catch (e) { alert("Erro ao criar repo"); }
+            finally { document.getElementById('loader').classList.add('hidden'); }
+        }
+
+        window.onload = () => { if (GITHUB_TOKEN) listFiles(); };
+    </script>
+</body>
+</html>
