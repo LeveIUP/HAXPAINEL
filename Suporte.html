@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>HYPELAB — Digital Infrastructure</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+/* HEADER & LOGO ANIMADA */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(to bottom, rgba(3,3,3,0.8), transparent);
+    backdrop-filter: blur(10px);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.logo-svg {
+    width: 32px;
+    height: 32px;
+    filter: drop-shadow(0 0 8px #22c55e);
+    animation: logoPulse 3s infinite ease-in-out;
+}
+
+.logo-text {
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.logo-text::after {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(34,197,94,0.4), transparent);
+    animation: logoShimmer 4s infinite;
+}
+
+@keyframes logoPulse {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px #22c55e); }
+    50% { transform: scale(1.1); filter: drop-shadow(0 0 15px #22c55e); }
+}
+
+@keyframes logoShimmer {
+    0% { left: -100%; }
+    20%, 100% { left: 100%; }
+}
+
+        :root {
+            --primary: #22c55e;
+            --bg: #030303;
+            --glass: rgba(18, 18, 18, 0.75);
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: #fff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* BACKGROUND GLOW */
+        .bg-glow {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background: radial-gradient(circle at top, rgba(34, 197, 94, 0.10), transparent 45%);
+            filter: blur(100px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 180px;
+        }
+
+        /* NAV */
+        .bottom-nav {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 430px;
+            padding: 18px;
+            display: flex;
+            justify-content: space-around;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(25px);
+            border-radius: 35px;
+            z-index: 999;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.8);
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #555;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            transition: .3s;
+        }
+
+        .nav-link.active { color: var(--primary); transform: translateY(-3px); }
+        .nav-link span { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
+
+        /* HERO */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 18px;
+            border-radius: 999px;
+            background: rgba(34, 197, 94, 0.08);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            color: var(--primary);
+            font-size: 10px;
+            font-family: 'JetBrains Mono';
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            font-size: clamp(50px, 12vw, 100px);
+            line-height: .9;
+            letter-spacing: -4px;
+            font-weight: 800;
+            margin-bottom: 25px;
+        }
+
+        .grad-text {
+            background: linear-gradient(180deg, #fff 40%, #555 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: #666;
+            font-size: 18px;
+            line-height: 1.7;
+            max-width: 650px;
+            margin-bottom: 40px;
+        }
+
+        /* BUTTONS */
+        .btn {
+            border: none;
+            cursor: pointer;
+            padding: 22px 32px;
+            border-radius: 24px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 12px;
+            transition: .3s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #000;
+            box-shadow: 0 10px 30px rgba(34, 197, 94, .25);
+        }
+
+        .btn-outline {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            color: #fff;
+        }
+
+        .btn:hover { transform: translateY(-2px); opacity: 0.9; }
+
+        /* SLIDER */
+        .premium-slider {
+            position: relative;
+            overflow: hidden;
+            border-radius: 40px;
+            height: 620px;
+            border: 1px solid var(--border);
+            background: #000;
+            margin-top: 40px;
+        }
+
+        .slide-wrap { position: absolute; inset: 0; opacity: 0; transition: opacity 1.4s ease; }
+        .slide-wrap.active { opacity: 1; z-index: 2; }
+
+        .premium-slide {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: slowZoom 10s linear infinite;
+            filter: brightness(.55);
+        }
+
+        @keyframes slowZoom { 0% { transform: scale(1); } 100% { transform: scale(1.08); } }
+
+        .slide-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 50px;
+            background: linear-gradient(to top, rgba(0,0,0,.90) 0%, rgba(0,0,0,.15) 60%, transparent 100%);
+        }
+
+        .slide-overlay h3 { font-size: clamp(34px, 6vw, 68px); line-height: .95; letter-spacing: -3px; font-weight: 800; margin-bottom: 20px; }
+
+        /* CARDS WITH ENHANCED ANIMATION */
+        #planos { margin-top: 90px; }
+        .plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+
+        .card {
+            background: linear-gradient(160deg, rgba(255,255,255,.04) 0%, rgba(0,0,0,0) 100%);
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            padding: 40px 30px;
+            transition: transform .45s cubic-bezier(.175,.885,.32,1.4), border-color .4s ease, box-shadow .4s ease;
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .card::after {
+            content: "";
+            position: absolute;
+            top: -120%; left: -40%;
+            width: 80px; height: 300%;
+            background: linear-gradient(180deg, transparent, rgba(255,255,255,.12), transparent);
+            transform: rotate(25deg);
+            transition: .9s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-12px) scale(1.02);
+            border-color: rgba(34, 197, 94, .35);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.45), 0 0 50px rgba(34, 197, 94, .08);
+        }
+
+        .card:hover::after { left: 140%; }
+
+        .card.featured {
+            border: 2px solid var(--primary);
+            background: rgba(34, 197, 94, .03);
+        }
+
+        .price { font-size: 56px; font-weight: 800; letter-spacing: -3px; margin: 25px 0; }
+        .price span { font-size: 16px; color: #666; font-weight: 400; }
+
+        .list { list-style: none; margin-bottom: 35px; }
+        .list li { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; color: #aaa; font-size: 14px; }
+        .list li i { color: var(--primary); }
+
+        /* MODAL */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.95);
+            backdrop-filter: blur(25px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            z-index: 9999;
+        }
+
+        .modal-card {
+            width: 100%;
+            max-width: 450px;
+            background: #0a0a0a;
+            border: 1px solid var(--border);
+            border-radius: 45px;
+            padding: 45px 35px;
+            text-align: center;
+            position: relative;
+        }
+
+        .qr-frame { background: #fff; padding: 15px; border-radius: 30px; display: inline-block; margin: 25px 0; }
+        .pix-code-box { background: rgba(255,255,255,.03); border: 1px dashed var(--border); border-radius: 20px; padding: 18px; margin-bottom: 25px; text-align: left; }
+        .pix-code-box code { font-size: 9px; color: #888; word-break: break-all; font-family: 'JetBrains Mono'; }
+
+        /* NOTIFICATIONS */
+        #notification-box { position: fixed; top: 25px; right: 20px; z-index: 5000; pointer-events: none; }
+        .notif {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            padding: 14px 22px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transform: translateX(130%);
+            transition: .6s cubic-bezier(.19,1,.22,1);
+        }
+        .notif.show { transform: translateX(0); }
+        .pulse-icon { width: 10px; height: 10px; border-radius: 50%; background: var(--primary); box-shadow: 0 0 12px var(--primary); }
+        .notif-text { font-size: 11px; font-weight: 600; line-height: 1.5; }
+
+        @media(max-width:900px){
+            .plans-grid { grid-template-columns: 1fr; }
+            .premium-slider { height: 520px; }
+            .slide-overlay h3 { font-size: 40px; }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <a href="#home" class="logo-container">
+        <svg class="logo-svg" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+        </svg>
+        <span class="logo-text">HYPELAB</span>
+    </a>
+</header>
+
+
+    <div class="bg-glow"></div>
+    <div id="notification-box"></div>
+
+    <!-- NAVIGATION -->
+    <nav class="bottom-nav">
+        <a href="#home" class="nav-link active" onclick="updateNav(0)">
+            <i data-lucide="layout-grid"></i>
+            <span>Painel</span>
+        </a>
+        <a href="#projetos" class="nav-link" onclick="updateNav(1)">
+            <i data-lucide="layers"></i>
+            <span>Vitrinnis</span>
+        </a>
+        <a href="#planos" class="nav-link" onclick="updateNav(2)">
+            <i data-lucide="zap"></i>
+            <span>Planos</span>
+        </a>
+        <a href="https://wa.me/5511949946730" target="_blank" class="nav-link">
+            <i data-lucide="message-circle"></i>
+            <span>Suporte</span>
+        </a>
+    </nav>
+
+    <main class="container">
+
+        <!-- HERO SECTION -->
+        <section id="home" class="hero">
+            <div class="badge">HYPELAB CORE ENGINE v5.0.2</div>
+            <h1 class="grad-text">Vitrines de<br>Alta Performance.</h1>
+            <p>Sistemas digitais expansivos, criptografados e projetados para escala. Sua autoridade começa aqui.</p>
+            <button class="btn btn-primary" onclick="location.href='#planos'">IMPLEMENTAR AGORA</button>
+        </section>
+
+        <!-- PROJETOS SECTION -->
+        <section id="projetos">
+            <div style="text-align:center; margin-bottom:40px;">
+                <span class="badge">PREMIUM_INTERFACE_SYSTEM</span>
+                <h2 style="font-size:38px; font-weight:800; letter-spacing:-2px;">Interfaces projetadas<br>para percepção Premium</h2>
+                <p style="color:#666; max-width:650px; margin:20px auto 0; line-height:1.7; font-size:15px;">
+                    Experiências visuais criadas para aumentar autoridade, retenção e conversão.
+                </p>
+            </div>
+
+            <div class="premium-slider">
+                <div class="slide-wrap active">
+                    <img src="https://cdn.jsdelivr.net/gh/HYPELABdev/Vitrinni/img/img_1778773838607.jpg" class="premium-slide">
+                    <div class="slide-overlay">
+                        <div class="badge" style="margin-bottom:15px;">HYPELAB UI ENGINE</div>
+                        <h3>Design estratégico<br>para vendas digitais</h3>
+                        <p>Estruturas focadas em percepção de valor e conversão mobile-first.</p>
+                    </div>
+                </div>
+                <div class="slide-wrap">
+                    <img src="https://cdn.jsdelivr.net/gh/HYPELABdev/Vitrinni/img/img_1778773838607.jpg" class="premium-slide" style="filter:brightness(.45) hue-rotate(25deg);">
+                    <div class="slide-overlay">
+                        <div class="badge" style="margin-bottom:15px;">SYSTEM EXPERIENCE</div>
+                        <h3>Ecossistemas modernos<br>de alta retenção</h3>
+                        <p>Arquitetura pensada para impacto psicológico e confiança instantânea.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PLANOS SECTION -->
+        <section id="planos">
+            <div style="text-align:center; margin-bottom:50px;">
+                <span class="badge">PRICING_MODELS</span>
+                <h2 style="font-size:36px; font-weight:800;">Expanda seu Ecossistema</h2>
+            </div>
+
+            <div class="plans-grid">
+                <!-- CARD 1 -->
+                <div class="card">
+                    <h3 style="font-weight:800;">VITRINNI ESTÁVEL</h3>
+                    <p style="color:#555; font-size:12px; font-weight:700; text-transform:uppercase; margin-top:5px;">Hospedagem Centralizada</p>
+                    <div class="price">R$ 97<span>/mês</span></div>
+                    <ul class="list">
+                        <li><i data-lucide="shield"></i> Host Github Blindado</li>
+                        <li><i data-lucide="check"></i> SSL/AES-256</li>
+                        <li><i data-lucide="refresh-cw"></i> Alterações via suporte</li>
+                        <li><i data-lucide="cpu"></i> Mobile ultra rápido</li>
+                    </ul>
+                    <button class="btn btn-outline" style="width:100%" onclick="openCheckout('Vitrinni Estável','97,00')">Ativar Estrutura</button>
+                </div>
+
+                <!-- CARD 2 (FEATURED) -->
+                <div class="card featured">
+                    <div style="position:absolute; top:0; right:35px; background:var(--primary); color:#000; padding:10px 18px; font-size:9px; font-weight:900; border-radius:0 0 12px 12px;">ENGINE ATIVA</div>
+                    <h3 style="font-weight:800;">PAINEL OPERADOR</h3>
+                    <p style="color:var(--primary); font-size:12px; font-weight:700; text-transform:uppercase; margin-top:5px;">Autonomia Total No-Code</p>
+                    <div class="price">R$ 297<span>/trimestre</span></div>
+                    <ul class="list">
+                        <li><i data-lucide="terminal"></i> Painel Hypelab</li>
+                        <li><i data-lucide="zap"></i> Troca de nicho em 1 click</li>
+                        <li><i data-lucide="layout"></i> Todos modelos inclusos</li>
+                        <li><i data-lucide="cloud-lightning"></i> Deploy instantâneo</li>
+                    </ul>
+                    <button class="btn btn-primary" style="width:100%" onclick="openCheckout('Painel Operador','297,00')">IMPLEMENTAR AGORA</button>
+                </div>
+
+                <!-- CARD 3 -->
+                <div class="card">
+                    <h3 style="font-weight:800;">ZENITH PRIME</h3>
+                    <p style="color:#555; font-size:12px; font-weight:700; text-transform:uppercase; margin-top:5px;">Infraestrutura Multi-Abas</p>
+                    <div class="price">R$ 997<span>/anual</span></div>
+                    <ul class="list">
+                        <li><i data-lucide="layers"></i> Site multi-páginas</li>
+                        <li><i data-lucide="globe"></i> Domínio grátis</li>
+                        <li><i data-lucide="award"></i> UI/UX exclusivo</li>
+                        <li><i data-lucide="headset"></i> Gerente VIP</li>
+                    </ul>
+                    <button class="btn btn-outline" style="width:100%" onclick="openCheckout('Zenith Prime','997,00')">CONSULTAR ZENITH</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- CHECKOUT MODAL -->
+    <div id="checkout" class="modal">
+        <div class="modal-card">
+            <button onclick="closeModal()" style="position:absolute; top:30px; right:30px; background:none; border:none; color:#444; cursor:pointer;">
+                <i data-lucide="x"></i>
+            </button>
+            <div style="width:60px; height:60px; background:rgba(34,197,94,.1); border-radius:20px; display:flex; align-items:center; justify-content:center; margin:0 auto 20px; color:var(--primary);">
+                <i data-lucide="shield-check" size="32"></i>
+            </div>
+            <h2 id="m-title" style="font-weight:800; font-size:26px;">PAINEL OPERADOR</h2>
+            <p style="color:#666; font-size:14px; margin-top:10px;">Valide o aporte de <b id="m-price" style="color:#fff;"></b></p>
+            
+            <div class="qr-frame">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=CHAVE_PIX_AQUI" width="190" alt="QR Code Pix">
+            </div>
+
+            <div class="pix-code-box">
+                <p style="font-size:9px; color:var(--primary); font-weight:800; margin-bottom:8px;">PIX COPIA E COLA</p>
+                <code>00020126330014br.gov.bcb.pix0111SUA_CHAVE_AQUI...</code>
+            </div>
+
+            <button class="btn btn-primary" id="wa-trigger" style="width:100%">VALIDAR VIA WHATSAPP</button>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Navigation Update
+        function updateNav(idx) {
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(l => l.classList.remove('active'));
+            links[idx].classList.add('active');
+        }
+
+        // Slider Logic
+        const premiumSlides = document.querySelectorAll('.slide-wrap');
+        let premiumIndex = 0;
+        setInterval(() => {
+            premiumSlides[premiumIndex].classList.remove('active');
+            premiumIndex = (premiumIndex + 1) % premiumSlides.length;
+            premiumSlides[premiumIndex].classList.add('active');
+        }, 5000);
+
+        // Checkout Logic
+        function openCheckout(title, price) {
+            document.getElementById('m-title').innerText = title;
+            document.getElementById('m-price').innerText = 'R$ ' + price;
+            
+            const msg = encodeURIComponent(`Olá HYPELAB! Realizei o pagamento de R$ ${price} referente ao plano ${title}.`);
+            document.getElementById('wa-trigger').onclick = () => window.open(`https://wa.me/5511949946730?text=${msg}`);
+            
+            d
