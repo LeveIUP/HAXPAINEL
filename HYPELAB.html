@@ -1,4 +1,4 @@
-<script>(function(){document.oncontextmenu=()=>false;})();</script><script>(function(){document.oncontextmenu=()=>false;})();</script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8" />
@@ -15,7 +15,7 @@
 :root{
     --primary:#22c55e;
     --bg:#030303;
-    --glass:rgba(18,18,18terminal,0.75);
+    --glass:rgba(18,18,18,0.75);
     --border:rgba(255,255,255,0.08);
 }
 
@@ -46,10 +46,10 @@ body{
     filter:blur(100px);
 }
 
-/* HEADER & LOGO */
+/* HEADER & LOGO ALMENTADO */
 .site-header {
     width: 100%;
-    padding: 30px 20px;
+    padding: 45px 20px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -59,9 +59,9 @@ body{
 
 .animated-logo {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 24px;
+    font-size: clamp(32px, 6vw, 42px); /* Responsivo: 42px no desktop, se ajusta no celular */
     font-weight: 800;
-    letter-spacing: 4px;
+    letter-spacing: 6px;
     color: #fff;
     text-transform: uppercase;
     text-decoration: none;
@@ -143,6 +143,68 @@ body{
 h1{ font-size:clamp(50px,12vw,100px); line-height:.9; letter-spacing:-4px; font-weight:800; margin-bottom:25px; }
 .grad-text{ background:linear-gradient(180deg, #fff 40%, #555 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
 .hero p{ color:#666; font-size:18px; line-height:1.7; max-width:650px; margin-bottom:40px; }
+
+/* SEÇÃO DO SLIDE ILUSTRATIVO */
+.promo-slider-section {
+    margin: 60px auto 100px;
+    max-width: 900px;
+    text-align: center;
+}
+.promo-slider-section h2 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 15px;
+}
+.promo-slider-section p {
+    color: #666;
+    font-size: 15px;
+    margin-bottom: 35px;
+}
+.slider-container {
+    position: relative;
+    width: 100%;
+    border-radius: 40px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    background: rgba(255,255,255,0.01);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+}
+.slider-wrapper {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    width: 200%;
+}
+.slide-item {
+    width: 50%;
+    flex-shrink: 0;
+    position: relative;
+}
+.slide-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+.slider-nav {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 25px;
+}
+.slider-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: 0.3s;
+}
+.slider-dot.active {
+    background: var(--primary);
+    transform: scale(1.2);
+    box-shadow: 0 0 10px var(--primary);
+}
 
 /* CARDS ANIMADOS */
 .card{
@@ -304,14 +366,36 @@ h1{ font-size:clamp(50px,12vw,100px); line-height:.9; letter-spacing:-4px; font-
     <section id="home" class="hero">
         <div class="badge">SISTEMA ATUALIZADO V5.0.2</div>
         <h1 class="grad-text">Estruturas Digitais<br>de Alta Conversão.</h1>
-        <p>Sistemas projetados para escala massiva e vendas agressivas.</p>
+        <p>Sistemas brasileiros projetados para escala massiva e vendas agressivas.</p>
         <button class="btn btn-primary" onclick="location.href='#planos'" style="max-width: 300px;">COMEÇAR AGORA</button>
+    </section>
+
+    <!-- SEÇÃO DO SLIDE DE FOTOS ILUSTRATIVO -->
+    <section class="promo-slider-section">
+        <h2 class="grad-text">Impulsione suas Vendas Massivamente</h2>
+        <p>Infraestrutura visual otimizada para reter a atenção e converter leads em clientes.</p>
+        
+        <div class="slider-container">
+            <div class="slider-wrapper" id="sliderWrapper">
+                <div class="slide-item">
+                    <img src="https://cdn.jsdelivr.net/gh/HYPELABdev/Vitrinni/img/img_1778773161233.jpg" alt="Ilustração de Vendas 1">
+                </div>
+                <div class="slide-item">
+                    <img src="https://cdn.jsdelivr.net/gh/HYPELABdev/Vitrinni/img/img_1778773838607.jpg" alt="Ilustração de Vendas 2">
+                </div>
+            </div>
+        </div>
+        
+        <div class="slider-nav">
+            <div class="slider-dot active" onclick="switchSlide(0)"></div>
+            <div class="slider-dot" onclick="switchSlide(1)"></div>
+        </div>
     </section>
 
     <section id="planos">
         <div class="plans-grid">
             <div class="card">
-                <h3>PLANO ESSENCIAL</h3>
+                <h3>START ESSENCIAL</h3>
                 <p style="color:#555; font-size:11px; font-weight:700; margin-top:5px; font-family:'JetBrains Mono';">HOSPEDAGEM BASE</p>
                 <div class="price">R$ 97<span>/mês</span></div>
                 <ul class="list">
@@ -341,7 +425,7 @@ h1{ font-size:clamp(50px,12vw,100px); line-height:.9; letter-spacing:-4px; font-
                 <div class="price">R$ 997<span>/anual</span></div>
                 <ul class="list">
                     <li><i data-lucide="layers"></i> Site Multi-páginas</li>
-                    <li><i data-lucide=""></i> Acesso Total ao Painel</li>
+                    <li><i data-lucide="terminal"></i> Acesso Total ao Painel</li>
                     <li><i data-lucide="award"></i> Domínio Grátis</li>
                     <li><i data-lucide="headset"></i> Suporte VIP 24h</li>
                 </ul>
@@ -382,6 +466,27 @@ h1{ font-size:clamp(50px,12vw,100px); line-height:.9; letter-spacing:-4px; font-
 
 <script>
 lucide.createIcons();
+
+// LOGICA DO SLIDE
+let currentSlide = 0;
+function switchSlide(index) {
+    currentSlide = index;
+    const wrapper = document.getElementById('sliderWrapper');
+    const dots = document.querySelectorAll('.slider-dot');
+    
+    wrapper.style.transform = `translateX(-${index * 50}%)`;
+    
+    dots.forEach((dot, i) => {
+        if(i === index) dot.classList.add('active');
+        else dot.classList.remove('active');
+    });
+}
+
+// Slide automático a cada 5 segundos
+setInterval(() => {
+    let nextSlide = currentSlide === 0 ? 1 : 0;
+    switchSlide(nextSlide);
+}, 5000);
 
 // PAGAMENTO
 let selectedPlan = "";
