@@ -1,9 +1,571 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-    <meta http-serif="refresh" content="0; url=./HYPELAB/HYPELAB.html">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+<title>HYPELAB — Infraestrutura Digital</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+
+:root{
+    --primary:#22c55e;
+    --bg:#030303;
+    --glass:rgba(18,18,18,0.75);
+    --border:rgba(255,255,255,0.08);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--bg);
+    color:#fff;
+    font-family:'Plus Jakarta Sans',sans-serif;
+    overflow-x:hidden;
+}
+
+/* BACKGROUND */
+.bg-glow{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    background: radial-gradient(circle at top, rgba(34,197,94,0.10), transparent 45%);
+    filter:blur(100px);
+}
+
+/* HEADER & LOGO ALMENTADO */
+.site-header {
+    width: 100%;
+    padding: 45px 20px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 100;
+}
+
+.animated-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(32px, 6vw, 42px); /* Responsivo: 42px no desktop, se ajusta no celular */
+    font-weight: 800;
+    letter-spacing: 6px;
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: linear-gradient(90deg, #fff, var(--primary), #fff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shineGlow 4s linear infinite;
+}
+
+@keyframes shineGlow {
+    0% { background-position: 0% center; filter: drop-shadow(0 0 2px rgba(34,197,94,0)); }
+    50% { filter: drop-shadow(0 0 8px rgba(34,197,94,0.6)); }
+    100% { background-position: 200% center; filter: drop-shadow(0 0 2px rgba(34,197,94,0)); }
+}
+
+/* CONTAINER */
+.container{
+    max-width:1200px;
+    margin:0 auto;
+    padding:40px 20px 180px;
+}
+
+/* NAV */
+.bottom-nav{
+    position:fixed;
+    bottom:25px;
+    left:50%;
+    transform:translateX(-50%);
+    width:90%;
+    max-width:430px;
+    padding:18px;
+    display:flex;
+    justify-content:space-around;
+    background:var(--glass);
+    border:1px solid var(--border);
+    backdrop-filter:blur(25px);
+    border-radius:35px;
+    z-index:999;
+    box-shadow:0 25px 50px rgba(0,0,0,0.8);
+}
+
+.nav-link{
+    text-decoration:none;
+    color:#555;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+    transition:.3s;
+}
+
+.nav-link.active{ color:var(--primary); transform:translateY(-3px); }
+.nav-link span{ font-size:9px; text-transform:uppercase; letter-spacing:1px; font-weight:800; }
+
+/* HERO */
+.hero{
+    min-height:90vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.badge{
+    display:inline-block;
+    padding:8px 18px;
+    border-radius:999px;
+    background:rgba(34,197,94,0.08);
+    border:1px solid rgba(34,197,94,0.2);
+    color:var(--primary);
+    font-size:10px;
+    font-family:'JetBrains Mono';
+    letter-spacing:1px;
+    margin-bottom:25px;
+}
+
+h1{ font-size:clamp(50px,12vw,100px); line-height:.9; letter-spacing:-4px; font-weight:800; margin-bottom:25px; }
+.grad-text{ background:linear-gradient(180deg, #fff 40%, #555 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.hero p{ color:#666; font-size:18px; line-height:1.7; max-width:650px; margin-bottom:40px; }
+
+/* SEÇÃO DO SLIDE ILUSTRATIVO */
+.promo-slider-section {
+    margin: 60px auto 100px;
+    max-width: 900px;
+    text-align: center;
+}
+.promo-slider-section h2 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 15px;
+}
+.promo-slider-section p {
+    color: #666;
+    font-size: 15px;
+    margin-bottom: 35px;
+}
+.slider-container {
+    position: relative;
+    width: 100%;
+    border-radius: 40px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    background: rgba(255,255,255,0.01);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+}
+.slider-wrapper {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    width: 200%;
+}
+.slide-item {
+    width: 50%;
+    flex-shrink: 0;
+    position: relative;
+}
+.slide-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+.slider-nav {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 25px;
+}
+.slider-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: 0.3s;
+}
+.slider-dot.active {
+    background: var(--primary);
+    transform: scale(1.2);
+    box-shadow: 0 0 10px var(--primary);
+}
+
+/* CARDS ANIMADOS */
+.card{
+    background: linear-gradient(160deg, rgba(255,255,255,.04) 0%, rgba(0,0,0,0) 100%);
+    border:1px solid var(--border);
+    border-radius:40px;
+    padding:40px 30px;
+    transition: transform .45s cubic-bezier(.175,.885,.32,1.4), border-color .4s ease, background .4s ease, box-shadow .4s ease;
+    position:relative;
+    overflow:hidden;
+    isolation:isolate;
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background: radial-gradient(circle at top, rgba(34,197,94,.14), transparent 55%);
+    opacity:0;
+    transition:.5s ease;
+    z-index:-1;
+}
+
+.card::after{
+    content:"";
+    position:absolute;
+    top:-120%;
+    left:-40%;
+    width:80px;
+    height:300%;
+    background: linear-gradient(180deg, transparent, rgba(255,255,255,.12), transparent);
+    transform:rotate(25deg);
+    transition:.9s ease;
+}
+
+.card:hover{
+    transform: translateY(-12px) scale(1.02);
+    border-color: rgba(34,197,94,.35);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.45), 0 0 50px rgba(34,197,94,.08);
+    background: linear-gradient(160deg, rgba(255,255,255,.06) 0%, rgba(34,197,94,.03) 100%);
+}
+
+.card:hover::before{ opacity:1; }
+.card:hover::after{ left:140%; }
+
+.card.featured{
+    border:2px solid var(--primary);
+    background: linear-gradient(160deg, rgba(34,197,94,.08), rgba(0,0,0,0));
+}
+
+.price{ font-size:56px; font-weight:800; letter-spacing:-3px; margin:25px 0; }
+.price span{ font-size:16px; color:#666; font-weight:400; }
+.list{ list-style:none; margin-bottom:35px; }
+.list li{ display:flex; align-items:center; gap:12px; margin-bottom:15px; color:#aaa; font-size:14px; }
+.list li i{ color:var(--primary); }
+
+.btn{ border:none; cursor:pointer; padding:22px 32px; border-radius:24px; font-weight:800; text-transform:uppercase; letter-spacing:1px; font-size:12px; transition:.3s; width: 100%; }
+.btn-primary{ background:var(--primary); color:#000; box-shadow: 0 10px 30px rgba(34,197,94,.25); }
+.btn-outline{ background:rgba(255,255,255,0.04); border:1px solid var(--border); color:#fff; }
+
+/* MODAL CHECKOUT BRASILEIRO */
+.modal-checkout {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(25px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 20px;
+}
+
+.modal-card-payment {
+    width: 100%;
+    max-width: 420px;
+    background: #0a0a0a;
+    border: 1px solid var(--border);
+    border-radius: 45px;
+    padding: 45px 35px;
+    text-align: center;
+}
+
+.qr-frame {
+    background: #fff;
+    padding: 15px;
+    border-radius: 30px;
+    display: inline-block;
+    margin: 20px 0;
+}
+
+.pix-code-box {
+    background: rgba(255,255,255,0.03);
+    border: 1px dashed var(--border);
+    border-radius: 20px;
+    padding: 18px;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.pix-code-box code {
+    font-size: 9px;
+    color: #888;
+    word-break: break-all;
+    font-family: 'JetBrains Mono';
+}
+
+.btn-whatsapp {
+    background: #25d366;
+    color: #fff;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+/* NOTIF */
+#notification-box{ position:fixed; top:25px; right:20px; z-index:5000; pointer-events:none; }
+.notif{ background:var(--glass); backdrop-filter:blur(20px); border:1px solid var(--border); padding:14px 22px; border-radius:20px; margin-bottom:12px; display:flex; align-items:center; gap:15px; transform:translateX(130%); transition:.6s cubic-bezier(.19,1,.22,1); }
+.notif.show{ transform:translateX(0); }
+.pulse-icon{ width:10px; height:10px; border-radius:50%; background:var(--primary); box-shadow:0 0 12px var(--primary); }
+.notif-text{ font-size:11px; font-weight:600; line-height:1.5; }
+
+@media(max-width:900px){ .plans-grid{ grid-template-columns:1fr; } }
+
+</style>
 </head>
+
 <body>
-    <p>Redirecionando...</p>
+
+<div class="bg-glow"></div>
+<div id="notification-box"></div>
+
+<header class="site-header">
+    <a href="#home" class="animated-logo">HYPELAB</a>
+</header>
+
+<nav class="bottom-nav">
+    <a href="#home" class="nav-link active">
+        <i data-lucide="layout-grid"></i>
+        <span>Início</span>
+    </a>
+    <a href="https://hypelabdev.github.io/HYPELAB/VITRINNI.html" class="nav-link">
+        <i data-lucide="layers"></i>
+        <span>Vitrines</span>
+    </a>
+    <a href="#planos" class="nav-link">
+        <i data-lucide="zap"></i>
+        <span>Planos</span>
+    </a>
+    <a href="https://hypelabdev.github.io/HYPELAB/SUPORTE.html" class="nav-link">
+        <i data-lucide="message-circle"></i>
+        <span>Suporte</span>
+    </a>
+</nav>
+
+<main class="container">
+    <section id="home" class="hero">
+        <div class="badge">SISTEMA ATUALIZADO V5.0.2</div>
+        <h1 class="grad-text">Estruturas Digitais<br>de Alta Conversão.</h1>
+        <p>Sistemas brasileiros projetados para escala massiva e vendas agressivas.</p>
+        <button class="btn btn-primary" onclick="location.href='#planos'" style="max-width: 300px;">COMEÇAR AGORA</button>
+    </section>
+
+    <!-- SEÇÃO DO SLIDE DE FOTOS ILUSTRATIVO -->
+    <section class="promo-slider-section">
+        <h2 class="grad-text">Impulsione suas Vendas Massivamente</h2>
+        <p>Infraestrutura visual otimizada para reter a atenção e converter leads em clientes.</p>
+        
+        <div class="slider-container">
+            <div class="slider-wrapper" id="sliderWrapper">
+                <div class="slide-item">
+                    <img src="https://cdn.jsdelivr.net/gh/HYPELABdev/Vitrinni/img/img_1778773161233.jpg" alt="Ilustração de Vendas 1">
+                </div>
+                <div class="slide-item">
+                    <img src="https://cdn.jsdelivr.net/gh/HYPELABdev/Vitrinni/img/img_1778773838607.jpg" alt="Ilustração de Vendas 2">
+                </div>
+            </div>
+        </div>
+        
+        <div class="slider-nav">
+            <div class="slider-dot active" onclick="switchSlide(0)"></div>
+            <div class="slider-dot" onclick="switchSlide(1)"></div>
+        </div>
+    </section>
+
+    <section id="planos">
+        <div class="plans-grid">
+            <div class="card">
+                <h3>START ESSENCIAL</h3>
+                <p style="color:#555; font-size:11px; font-weight:700; margin-top:5px; font-family:'JetBrains Mono';">HOSPEDAGEM BASE</p>
+                <div class="price">R$ 97<span>/mês</span></div>
+                <ul class="list">
+                    <li><i data-lucide="shield"></i> Host Github Blindado</li>
+                    <li><i data-lucide="check"></i> Segurança SSL Ativa</li>
+                    <li><i data-lucide="cpu"></i> Carregamento Instantâneo</li>
+                </ul>
+                <button class="btn btn-outline" onclick="openPayment('Start Essencial','97,00')">QUERO ESTE PLANO</button>
+            </div>
+
+            <div class="card featured">
+                <div style="position:absolute; top:0; right:35px; background:var(--primary); color:#000; padding:10px 18px; font-size:9px; font-weight:900; border-radius:0 0 12px 12px;">MAIS VENDIDO</div>
+                <h3>OPERADOR PRO</h3>
+                <p style="color:var(--primary); font-size:11px; font-weight:700; margin-top:5px; font-family:'JetBrains Mono';">PAINEL DE CONTROLE INCLUSO</p>
+                <div class="price">R$ 297<span>/trimestre</span></div>
+                <ul class="list">
+                    <li><i data-lucide="terminal"></i> Painel Hypelab</li>
+                    <li><i data-lucide="zap"></i> Troca de Nicho em 1 Clique</li>
+                    <li><i data-lucide="layout"></i> Todos Modelos Inclusos</li>
+                </ul>
+                <button class="btn btn-primary" onclick="openPayment('Operador Pro','297,00')">ATIVAR AGORA</button>
+            </div>
+
+            <div class="card">
+                <h3>INFRA ESTRUTURA ELITE</h3>
+                <p style="color:#555; font-size:11px; font-weight:700; margin-top:5px; font-family:'JetBrains Mono';">SISTEMA COMPLETO ANUAL</p>
+                <div class="price">R$ 997<span>/anual</span></div>
+                <ul class="list">
+                    <li><i data-lucide="layers"></i> Site Multi-páginas</li>
+                    <li><i data-lucide="terminal"></i> Acesso Total ao Painel</li>
+                    <li><i data-lucide="award"></i> Domínio Grátis</li>
+                    <li><i data-lucide="headset"></i> Suporte VIP 24h</li>
+                </ul>
+                <button class="btn btn-outline" onclick="openPayment('Infra Estrutura Elite','997,00')">ADQUIRIR ELITE</button>
+            </div>
+        </div>
+    </section>
+</main>
+
+<div id="payment-modal" class="modal-checkout">
+    <div class="modal-card-payment">
+        <div style="background:rgba(34,197,94,0.1); color:var(--primary); padding:8px 20px; border-radius:99px; display:inline-block; font-size:10px; font-weight:800; margin-bottom:20px;">PAGAMENTO SEGURO VIA PIX</div>
+        <h2 id="pay-title" style="font-weight:800; font-family:'JetBrains Mono';"></h2>
+        <div id="pay-price" style="font-size:32px; font-weight:800; color:var(--primary); margin:10px 0 20px;"></div>
+        
+        <div class="qr-frame">
+            <img id="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=00020126580014BR.GOV.BCB.PIX0136b5f6c99c-53cc-4f71-9116-7f20ed882bb65204000053039865802BR5922Yuri Foster Marquezini6009SAO PAULO62140510AzkZX93FCG63044C06" width="180">
+        </div>
+
+        <div class="pix-code-box">
+            <code id="pix-string">00020126580014BR.GOV.BCB.PIX0136b5f6c99c-53cc-4f71-9116-7f20ed882bb65204000053039865802BR5922Yuri Foster Marquezini6009SAO PAULO62140510AzkZX93FCG63044C06</code>
+        </div>
+
+        <button class="btn btn-outline" id="copy-btn" style="margin-bottom:12px; padding:18px;" onclick="copyPix()">
+            <span id="copy-btn-text">COPIAR CÓDIGO PIX</span>
+        </button>
+
+        <button class="btn btn-whatsapp" onclick="sendWhatsApp()">
+            <i data-lucide="message-circle"></i>
+            FINALIZAR NO WHATSAPP
+        </button>
+
+        <p style="margin-top:20px; font-size:10px; color:#444; cursor:pointer; font-family:'JetBrains Mono';" onclick="closePayment()">[ CANCELAR ]</p>
+    </div>
+</div>
+
+<textarea id="temp-copy" style="position:fixed; opacity:0; left:-1000px;"></textarea>
+
+<script>
+lucide.createIcons();
+
+// LOGICA DO SLIDE
+let currentSlide = 0;
+function switchSlide(index) {
+    currentSlide = index;
+    const wrapper = document.getElementById('sliderWrapper');
+    const dots = document.querySelectorAll('.slider-dot');
+    
+    wrapper.style.transform = `translateX(-${index * 50}%)`;
+    
+    dots.forEach((dot, i) => {
+        if(i === index) dot.classList.add('active');
+        else dot.classList.remove('active');
+    });
+}
+
+// Slide automático a cada 5 segundos
+setInterval(() => {
+    let nextSlide = currentSlide === 0 ? 1 : 0;
+    switchSlide(nextSlide);
+}, 5000);
+
+// PAGAMENTO
+let selectedPlan = "";
+function openPayment(title, price) {
+    selectedPlan = title;
+    document.getElementById('pay-title').innerText = title;
+    document.getElementById('pay-price').innerText = "R$ " + price;
+    document.getElementById('payment-modal').style.display = "flex";
+}
+
+function closePayment() {
+    document.getElementById('payment-modal').style.display = "none";
+}
+
+// FUNÇÃO DE CÓPIA ROBUSTA
+function copyPix() {
+    const textToCopy = document.getElementById('pix-string').innerText;
+    const btnText = document.getElementById('copy-btn-text');
+    const tempInput = document.getElementById('temp-copy');
+
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            handleCopySuccess(btnText);
+        }).catch(err => {
+            fallbackCopy(textToCopy, tempInput, btnText);
+        });
+    } else {
+        fallbackCopy(textToCopy, tempInput, btnText);
+    }
+}
+
+function fallbackCopy(text, input, btn) {
+    input.value = text;
+    input.select();
+    input.setSelectionRange(0, 99999);
+    try {
+        document.execCommand('copy');
+        handleCopySuccess(btn);
+    } catch (err) {
+        btn.innerText = "ERRO AO COPIAR";
+    }
+}
+
+function handleCopySuccess(btn) {
+    btn.innerText = "CÓDIGO COPIADO!";
+    btn.parentElement.style.borderColor = "var(--primary)";
+    setTimeout(() => {
+        btn.innerText = "COPIAR CÓDIGO PIX";
+        btn.parentElement.style.borderColor = "var(--border)";
+    }, 2500);
+}
+
+function sendWhatsApp() {
+    const num = "5511949946730";
+    const msg = encodeURIComponent(`Olá Hypelab! Tenho interesse no plano ${selectedPlan}. Aguardo instruções para ativação.`);
+    window.open(`https://wa.me/${num}?text=${msg}`, '_blank');
+}
+
+// NOTIFICAÇÕES (BRASILEIRAS)
+const names=["Ricardo M.","Julia Silva","Felipe Souza","Ana Clara","Marcos O.","Daniel B."];
+const items=["Start Essencial","Operador Pro","Infra Estrutura Elite"];
+
+function pushNotif(){
+    const box=document.getElementById('notification-box');
+    const n=names[Math.floor(Math.random()*names.length)];
+    const i=items[Math.floor(Math.random()*items.length)];
+    const d=document.createElement('div');
+    d.className='notif';
+    d.innerHTML=`<div class="pulse-icon"></div><div class="notif-text"><b>${n}</b> ativou agora:<br>${i}</div>`;
+    box.appendChild(d);
+    setTimeout(()=>d.classList.add('show'),100);
+    setTimeout(()=>{
+        d.classList.remove('show');
+        setTimeout(()=>d.remove(),600);
+    },4500);
+}
+setInterval(pushNotif,12000);
+</script>
+
 </body>
-</html>
+        </html>
+
